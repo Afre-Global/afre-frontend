@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@repo/ui/button";
 import { Coffee, Leaf, X, Menu, ChevronRight, MapPin, Linkedin, Instagram, Mail, Phone, Milk, Bean, Apple, Banknote } from "lucide-react"
 import { useState } from "react"
 
@@ -423,7 +422,7 @@ function TeamSection() {
             name: "Daniel Afe",
             title: "Co-Founder & CEO",
             bio: "Daniel, a Nigerian-Canadian with economics education from Saskatchewan and Dundee universities, combines his business expertise, policy analysis experience, community leadership roles, and passion for innovation to lead Afre in its mission to transform farmers' livelihoods across Africa.",
-            image: "/DanielAfe.JPEG",
+            image: "/DanielAfe.webp",
         },
         {
             name: "Damilare-Oluwa Adeniyi",
