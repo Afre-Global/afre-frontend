@@ -155,7 +155,7 @@ function HeroSection() {
                     Revolutionizing Nigerian Agriculture
                 </h1>
                 <p className="mt-6 max-w-2xl text-lg text-gray-200">
-                    Afre is a digital platform connection farmers to buyers,
+                    Afre is a digital platform connecting farmers to buyers,
                     financial services, and training opportunities to ensure
                     increased market access, fair prices and sustainable practices.
                 </p>
