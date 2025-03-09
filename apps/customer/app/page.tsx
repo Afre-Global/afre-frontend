@@ -36,26 +36,26 @@ function Header() {
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="container flex h-16 items-center justify-between">
                 <Link href="/" className="flex items-center gap-2">
-                    {/* <Leaf className="h-6 w-6 text-green-600" /> */}
+                    {/* <Leaf className="h-6 w-6 text-[#075b23]" /> */}
                     <span className="text-xl font-bold text-[#075b23]">Afre</span>
                 </Link>
                 <nav className="hidden md:flex gap-6">
-                    <Link href="#vision" className="text-sm font-medium hover:text-green-600 transition-colors">
+                    <Link href="#vision" className="text-sm font-medium hover:text-[#075b23] transition-colors">
                         Our Vision
                     </Link>
-                    <Link href="#products" className="text-sm font-medium hover:text-green-600 transition-colors">
+                    <Link href="#products" className="text-sm font-medium hover:text-[#075b23] transition-colors">
                         Products
                     </Link>
-                    <Link href="#about" className="text-sm font-medium hover:text-green-600 transition-colors">
+                    <Link href="#about" className="text-sm font-medium hover:text-[#075b23] transition-colors">
                         About Us
                     </Link>
-                    <Link href="#sustainability" className="text-sm font-medium hover:text-green-600 transition-colors">
+                    <Link href="#sustainability" className="text-sm font-medium hover:text-[#075b23] transition-colors">
                         Sustainability
                     </Link>
-                    <Link href="#team" className="text-sm font-medium hover:text-green-600 transition-colors">
+                    <Link href="#team" className="text-sm font-medium hover:text-[#075b23] transition-colors">
                         Team
                     </Link>
-                    <Link href="#partner" className="text-sm font-medium hover:text-green-600 transition-colors">
+                    <Link href="#partner" className="text-sm font-medium hover:text-[#075b23] transition-colors">
                         Partner
                     </Link>
                 </nav>
@@ -68,7 +68,7 @@ function Header() {
                     </a>
                     <a
                         href="#partner"
-                        className="inline-flex items-center justify-center rounded-md text-sm font-medium h-9 px-4 py-2 bg-green-600 text-white hover:bg-green-700 transition-colors"
+                        className="inline-flex items-center justify-center rounded-md text-sm font-medium h-9 px-4 py-2 bg-[#075b23] text-white hover:bg-green-700 transition-colors"
                     >
                         Partner With Us
                     </a>
@@ -104,27 +104,27 @@ function MobileNav() {
                             </button>
                         </div>
                         <nav className="mt-8 flex flex-col gap-6">
-                            <Link href="#vision" className="text-lg font-medium hover:text-green-600 transition-colors" onClick={() => setOpen(false)}>
+                            <Link href="#vision" className="text-lg font-medium hover:text-[#075b23] transition-colors" onClick={() => setOpen(false)}>
                                 Our Vision
                             </Link>
-                            <Link href="#products" className="text-lg font-medium hover:text-green-600 transition-colors" onClick={() => setOpen(false)}>
+                            <Link href="#products" className="text-lg font-medium hover:text-[#075b23] transition-colors" onClick={() => setOpen(false)}>
                                 Products
                             </Link>
-                            <Link href="#about" className="text-lg font-medium hover:text-green-600 transition-colors" onClick={() => setOpen(false)}>
+                            <Link href="#about" className="text-lg font-medium hover:text-[#075b23] transition-colors" onClick={() => setOpen(false)}>
                                 About Us
                             </Link>
-                            <Link href="#sustainability" className="text-lg font-medium hover:text-green-600 transition-colors" onClick={() => setOpen(false)}>
+                            <Link href="#sustainability" className="text-lg font-medium hover:text-[#075b23] transition-colors" onClick={() => setOpen(false)}>
                                 Sustainability
                             </Link>
-                            <Link href="#team" className="text-lg font-medium hover:text-green-600 transition-colors" onClick={() => setOpen(false)}>
+                            <Link href="#team" className="text-lg font-medium hover:text-[#075b23] transition-colors" onClick={() => setOpen(false)}>
                                 Team
                             </Link>
-                            <Link href="#partner" className="text-lg font-medium hover:text-green-600 transition-colors" onClick={() => setOpen(false)}>
+                            <Link href="#partner" className="text-lg font-medium hover:text-[#075b23] transition-colors" onClick={() => setOpen(false)}>
                                 Partner
                             </Link>
                             <a
                                 href="#contact"
-                                className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-green-600 text-white hover:bg-green-700 transition-colors"
+                                className="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-[#075b23] text-white hover:bg-green-700 transition-colors"
                                 onClick={() => setOpen(false)}
                             >
                                 Contact Us
@@ -161,7 +161,7 @@ function HeroSection() {
                 <div className="mt-10 flex flex-wrap gap-4 justify-center">
                     <a
                         href="#vision"
-                        className="inline-flex items-center justify-center rounded-md text-sm font-medium h-11 px-8 py-2 bg-green-600 text-white hover:bg-green-700 transition-colors"
+                        className="inline-flex items-center justify-center rounded-md text-sm font-medium h-11 px-8 py-2 bg-[#075b23] text-white hover:bg-green-700 transition-colors"
                     >
                         Our Vision <ChevronRight className="ml-2 h-4 w-4" />
                     </a>
@@ -243,7 +243,7 @@ function ProductsSection() {
             description:
                 "High-quality sesame seeds with exceptional oil content, grown in Nigeria's tropical climate. Our sesame program is designed to support local farmers and promote sustainable farming practices.",
             image: "/sesame_seed.jpeg",
-            icon: <Bean className="h-10 w-10 text-green-600" />,
+            icon: <Bean className="h-10 w-10 text-[#075b23]" />,
             link: "#sesame",
         },
         {
@@ -251,7 +251,7 @@ function ProductsSection() {
             description:
                 "Fruits, vegetables, and more directly from farms to your table. Our upcoming fresh produce program will focus on quality, sustainability, and fair compensation for farmers.",
             image: "/fresh_produce.jpeg",
-            icon: <Apple className="h-10 w-10 text-green-600" />,
+            icon: <Apple className="h-10 w-10 text-[#075b23]" />,
             link: "#coffee",
         },
         {
@@ -259,7 +259,7 @@ function ProductsSection() {
             description:
                 "Quality dairy products and livestock supplies.",
             image: "/dairy.jpeg",
-            icon: <Milk className="h-10 w-10 text-green-600" />,
+            icon: <Milk className="h-10 w-10 text-[#075b23]" />,
             link: "#coffee",
         },
         {
@@ -267,7 +267,7 @@ function ProductsSection() {
             description:
                 "Quality seeds and essential farming supplies to help farmers increase yields and maintain the highest quality standards.",
             image: "/seeding.jpeg",
-            icon: <Bean className="h-10 w-10 text-green-600" />,
+            icon: <Bean className="h-10 w-10 text-[#075b23]" />,
             link: "#coffee",
         },
     ]
@@ -523,17 +523,17 @@ function ContactSection() {
                         <div className="space-y-4">
                             {/*
                             <div className="flex items-center gap-3">
-                                <MapPin className="h-5 w-5 text-green-600" />
+                                <MapPin className="h-5 w-5 text-[#075b23]" />
                                 <p>Lagos Office: 25 Marina Street, Lagos Island, Nigeria</p>
                             </div>
                             */}
                             <div className="flex items-center gap-3">
-                                <Mail className="h-5 w-5 text-green-600" />
+                                <Mail className="h-5 w-5 text-[#075b23]" />
                                 <p>info@afre.com</p>
                             </div>
                             {/*
                             <div className="flex items-center gap-3">
-                                <Phone className="h-5 w-5 text-green-600" />
+                                <Phone className="h-5 w-5 text-[#075b23]" />
                                 <p>+234 123 456 7890</p>
                             </div>
                             */}
@@ -567,7 +567,7 @@ function ContactSection() {
                                         id="name"
                                         name="name"
                                         placeholder="Your name"
-                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075b23] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -579,7 +579,7 @@ function ContactSection() {
                                         id="name"
                                         name="name"
                                         placeholder="Your name"
-                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                        className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075b23] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                     />
                                 </div>
                             </div>
@@ -592,7 +592,7 @@ function ContactSection() {
                                     id="name"
                                     name="name"
                                     placeholder="Your name"
-                                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075b23] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                 />
                             </div>
                             <div className="space-y-2">
@@ -604,12 +604,12 @@ function ContactSection() {
                                     name="message"
                                     placeholder="Your message"
                                     rows={4}
-                                    className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075b23] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                                 ></textarea>
                             </div>
                             <button
                                 type="submit"
-                                className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-green-600 text-white hover:bg-green-700 transition-colors"
+                                className="w-full inline-flex items-center justify-center rounded-md text-sm font-medium h-10 px-4 py-2 bg-[#075b23] text-white hover:bg-green-700 transition-colors"
                             >
                                 Send Message
                             </button>
