@@ -151,7 +151,7 @@ function HeroSection() {
             </div>
             <div className="container relative z-10 flex flex-col items-center text-center">
                 <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-                    Revolutionizing Nigerian Agriculture
+                    Revolutionizing African Agriculture
                 </h1>
                 <p className="mt-6 max-w-2xl text-lg text-gray-200">
                     Afre is a digital platform connecting farmers to buyers,
@@ -184,7 +184,7 @@ function VisionSection() {
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Vision</h2>
                     <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                        We&apos;re on a mission to transform Nigerian agriculture and bring its exceptional products to the global
+                        We&apos;re on a mission to transform African agriculture and bring its exceptional products to the global
                         market.
                     </p>
                 </div>
@@ -192,12 +192,12 @@ function VisionSection() {
                     <div>
                         <h3 className="text-2xl font-bold mb-4">Bridging Farmers to Global Markets</h3>
                         <p className="text-lg text-muted-foreground mb-6">
-                            Afre is building the infrastructure and partnerships needed to connect Nigerian farmers directly to
-                            international buyers, eliminating middlemen and ensuring fair compensation.
+                            Afre is building the infrastructure and partnerships needed to connect African farmers directly to
+                            international buyers, minimizing the involvement middlemen and ensuring fair compensation.
                         </p>
                         <h3 className="text-2xl font-bold mb-4">Sustainable Agricultural Practices</h3>
                         <p className="text-lg text-muted-foreground mb-6">
-                            We&apos;re committed to promoting sustainable farming methods that preserve Nigeria&apos;s rich soil and
+                            We&apos;re committed to promoting sustainable farming methods that preserve Africa&apos;s rich soil and
                             biodiversity while producing premium quality crops.
                         </p>
                         <h3 className="text-2xl font-bold mb-4">Technology-Driven Farming</h3>
@@ -225,7 +225,7 @@ function ProductsSection() {
         {
             name: "Premium Cocoa",
             description:
-                "Rich, aromatic cocoa beans from Nigeria's fertile soils, perfect for premium chocolate production. We're developing partnerships with local farmers to bring this exceptional product to global markets.",
+                "Rich, aromatic cocoa beans from Africa's fertile soils, perfect for premium chocolate production. We're developing partnerships with local farmers to bring this exceptional product to global markets.",
             image: "/cocoa.jpeg",
             icon: <Leaf className="h-10 w-10 text-amber-600" />,
             link: "#cocoa",
@@ -233,7 +233,7 @@ function ProductsSection() {
         {
             name: "Specialty Coffee",
             description:
-                "Single-origin coffee with complex flavor profiles, grown in Nigeria's highland regions. Our upcoming coffee program will focus on quality, sustainability, and fair compensation for farmers.",
+                "Single-origin coffee with complex flavor profiles, grown in Africa's highland regions. Our upcoming coffee program will focus on quality, sustainability, and fair compensation for farmers.",
             image: "/coffee.jpeg",
             icon: <Coffee className="h-10 w-10 text-amber-800" />,
             link: "#coffee",
@@ -241,7 +241,7 @@ function ProductsSection() {
         {
             name: "Sesame Seed",
             description:
-                "High-quality sesame seeds with exceptional oil content, grown in Nigeria's tropical climate. Our sesame program is designed to support local farmers and promote sustainable farming practices.",
+                "High-quality sesame seeds with exceptional oil content, grown in Africa's tropical climate. Our sesame program is designed to support local farmers and promote sustainable farming practices.",
             image: "/sesame_seed.jpeg",
             icon: <Bean className="h-10 w-10 text-[#075b23]" />,
             link: "#sesame",
@@ -278,7 +278,7 @@ function ProductsSection() {
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Focus Areas</h2>
                     <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Discover the high-potential agricultural products we&apos;re developing with Nigerian farmers.
+                        Discover the high-potential agricultural products we&apos;re developing with African farmers.
                     </p>
                 </div>
                 <div className="grid gap-8 md:grid-cols-3">
@@ -428,7 +428,7 @@ function TeamSection() {
             name: "Damilare-Oluwa Adeniyi",
             title: "Co-Founder & CTO",
             bio: "Damilare leverages his dual background in Engineering Physics and Computer Science from the University of Saskatchewan, along with his experience developing next-generation chip design software at Siemens EDA, to apply first-principles problem-solving approaches to Afre's platform development while pursuing his passion for hardware-software integration.",
-            image: "/damilare.JPG",
+            image: "/Damilare.webp",
         },
     ]
 
@@ -438,7 +438,7 @@ function TeamSection() {
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Team</h2>
                     <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Meet the passionate experts behind Afre&apos;s mission to transform Nigerian agriculture.
+                        Meet the passionate experts behind Afre&apos;s mission to transform African agriculture.
                     </p>
                 </div>
                 <div className="grid gap-8 md:grid-cols-2">
@@ -467,7 +467,7 @@ function PartnerSection() {
             <div className="container text-center">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Partner With Afre</h2>
                 <p className="mt-4 text-lg max-w-2xl mx-auto">
-                    Join us in our mission to transform Nigerian agriculture and bring premium products to global markets.
+                    Join us in our mission to transform African agriculture and bring premium products to global markets.
                 </p>
                 <div className="mt-10 grid md:grid-cols-3 gap-8">
                     <div className="bg-gradient-to-br from-white/10 to-transparent p-6 rounded-lg border border-white/20 hover:bg-white/10 transition-colors">
@@ -485,7 +485,7 @@ function PartnerSection() {
                     <div className="bg-gradient-to-br from-white/10 to-transparent p-6 rounded-lg border border-white/20 hover:bg-white/10 transition-colors">
                         <h3 className="text-xl font-bold mb-3">Distributors</h3>
                         <p className="mb-4">
-                            Connect with us to discuss future distribution of premium Nigerian agricultural products.
+                            Connect with us to discuss future distribution of premium African agricultural products.
                         </p>
                         <a
                             href="#contact"
@@ -632,7 +632,7 @@ function Footer() {
                             <span className="text-xl font-bold text-white">Afre</span>
                         </div>
                         <p className="text-sm">
-                            Pioneering agricultural startup connecting Nigerian farmers to global markets through sustainable
+                            Pioneering agricultural startup connecting African farmers to global markets through sustainable
                             practices.
                         </p>
                         <div className="flex gap-4 mt-4">
