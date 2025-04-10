@@ -45,7 +45,7 @@ export default function Home() {
 							</h1>
 							<p className="max-w-[700px] text-muted-foreground md:text-xl">
 								Our seller platform is launching soon. Join our waitlist to be the first to know when we can connect you
-								with Nigerian farmers and their exceptional products.
+								with African farmers and their exceptional products.
 							</p>
 							<div className="flex flex-col gap-2 min-[400px]:flex-row">
 								<Button size="lg" className="bg-[#075b23] hover:bg-[#075b23]/90">
@@ -70,7 +70,7 @@ export default function Home() {
 						<div className="flex flex-col items-center justify-center space-y-4 text-center">
 							<h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Why Sell on Afre?</h2>
 							<p className="max-w-[700px] text-muted-foreground md:text-xl">
-								Join our platform to connect with Nigerian farmers and bring their exceptional agricultural products to
+								Join our platform to connect with African farmers and bring their exceptional agricultural products to
 								global markets.
 							</p>
 						</div>
@@ -79,16 +79,16 @@ export default function Home() {
 								<div className="rounded-full bg-[#075b23]/10 p-3">
 									<CheckCircle2 className="h-6 w-6 text-[#075b23]" />
 								</div>
-								<h3 className="text-xl font-bold">Access Nigerian Agriculture</h3>
+								<h3 className="text-xl font-bold">Access African Agriculture</h3>
 								<p className="text-center text-muted-foreground">
-									Connect directly with Nigerian farmers and access exceptional agricultural products.
+									Connect directly with African farmers and access exceptional agricultural products.
 								</p>
 							</div>
 							<div className="flex flex-col items-center space-y-4 rounded-lg border p-6">
 								<div className="rounded-full bg-[#075b23]/10 p-3">
 									<CheckCircle2 className="h-6 w-6 text-[#075b23]" />
 								</div>
-								<h3 className="text-xl font-bold">Eliminate Middlemen</h3>
+								<h3 className="text-xl font-bold">Minimize Middlemen Involvement</h3>
 								<p className="text-center text-muted-foreground">
 									Work directly with farmers, ensuring fair compensation and better prices for all.
 								</p>
