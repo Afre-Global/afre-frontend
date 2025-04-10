@@ -102,13 +102,15 @@ export default function Home() {
                                     Get connected to training, financing, and tools that help you meet local and global standards.
                                 </p>
 							</div>
+						</div>
+						<div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2">
 							<div className="flex flex-col items-center space-y-4 rounded-lg border p-6">
 								<div className="rounded-full bg-[#075b23]/10 p-3">
 									<CheckCircle2 className="h-6 w-6 text-[#075b23]" />
 								</div>
 								<h3 className="text-xl font-bold">Reliable Platform</h3>
 								<p className="text-center text-muted-foreground">
-                                    Build with farmers in mind, we offer security, transparensy, and commitment to your success.
+                                    Build with farmers in mind, we offer security, transparency, and commitment to your success.
                                 </p>
 							</div>
 							<div className="flex flex-col items-center space-y-4 rounded-lg border p-6">
