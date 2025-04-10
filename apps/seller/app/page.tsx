@@ -45,7 +45,7 @@ export default function Home() {
 							</h1>
 							<p className="max-w-[700px] text-muted-foreground md:text-xl">
 								Our seller platform is launching soon. Join our waitlist to be the first to know when we can connect you
-								with African farmers and their exceptional products.
+								with customers globally and sell your exceptional products.
 							</p>
 							<div className="flex flex-col gap-2 min-[400px]:flex-row">
 								<Button size="lg" className="bg-[#075b23] hover:bg-[#075b23]/90">
