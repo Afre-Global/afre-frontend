@@ -68,7 +68,7 @@ export default function Home() {
 				<section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
 					<div className="container px-4 md:px-6">
 						<div className="flex flex-col items-center justify-center space-y-4 text-center">
-							<h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Why Sell on Afre?</h2>
+							<h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Why Choose on Afre?</h2>
 							<p className="max-w-[700px] text-muted-foreground md:text-xl">
 								Join our platform to connect with African farmers and bring their exceptional agricultural products to
 								global markets.
@@ -79,28 +79,48 @@ export default function Home() {
 								<div className="rounded-full bg-[#075b23]/10 p-3">
 									<CheckCircle2 className="h-6 w-6 text-[#075b23]" />
 								</div>
-								<h3 className="text-xl font-bold">Access African Agriculture</h3>
+								<h3 className="text-xl font-bold">Increased Earnings</h3>
 								<p className="text-center text-muted-foreground">
-									Connect directly with African farmers and access exceptional agricultural products.
+                                    Connect directly with buyers and earn more for your hard work, with no middlemen taking a large cut.
 								</p>
 							</div>
 							<div className="flex flex-col items-center space-y-4 rounded-lg border p-6">
 								<div className="rounded-full bg-[#075b23]/10 p-3">
 									<CheckCircle2 className="h-6 w-6 text-[#075b23]" />
 								</div>
-								<h3 className="text-xl font-bold">Minimize Middlemen Involvement</h3>
+								<h3 className="text-xl font-bold">Access to Market</h3>
 								<p className="text-center text-muted-foreground">
-									Work directly with farmers, ensuring fair compensation and better prices for all.
-								</p>
+                                    Reach local and international buyers looking for quality, traceable products like yours.
+                                </p>
 							</div>
 							<div className="flex flex-col items-center space-y-4 rounded-lg border p-6">
 								<div className="rounded-full bg-[#075b23]/10 p-3">
 									<CheckCircle2 className="h-6 w-6 text-[#075b23]" />
 								</div>
-								<h3 className="text-xl font-bold">Support Sustainability</h3>
+								<h3 className="text-xl font-bold">Support to Grow</h3>
 								<p className="text-center text-muted-foreground">
-									Participate in sustainable agricultural practices that benefit communities and the environment.
-								</p>
+                                    Get connected to training, financing, and tools that help you meet local and global standards.
+                                </p>
+							</div>
+						</div>
+						<div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2">
+							<div className="flex flex-col items-center space-y-4 rounded-lg border p-6">
+								<div className="rounded-full bg-[#075b23]/10 p-3">
+									<CheckCircle2 className="h-6 w-6 text-[#075b23]" />
+								</div>
+								<h3 className="text-xl font-bold">Reliable Platform</h3>
+								<p className="text-center text-muted-foreground">
+                                    Build with farmers in mind, we offer security, transparency, and commitment to your success.
+                                </p>
+							</div>
+							<div className="flex flex-col items-center space-y-4 rounded-lg border p-6">
+								<div className="rounded-full bg-[#075b23]/10 p-3">
+									<CheckCircle2 className="h-6 w-6 text-[#075b23]" />
+								</div>
+								<h3 className="text-xl font-bold">Affordable to Use</h3>
+								<p className="text-center text-muted-foreground">
+                                    Start for free with flexible options designed to fit your needs and scale as you grow.
+                                </p>
 							</div>
 						</div>
 					</div>
