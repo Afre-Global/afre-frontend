@@ -529,7 +529,7 @@ function ContactSection() {
                             */}
                             <div className="flex items-center gap-3">
                                 <Mail className="h-5 w-5 text-[#075b23]" />
-                                <p>info@afre.com</p>
+                                <p>support@afreglobal.com</p>
                             </div>
                             {/*
                             <div className="flex items-center gap-3">
