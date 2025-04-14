@@ -3,6 +3,10 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle2, Clock, ShoppingBag } from "lucide-react"
 
+const BUYER_PLATFORM_URL = process.env.NEXT_PUBLIC_BUYER_PLATFORM_URL || "https://www.afreglobal.com/"
+const BUYER_PLATFORM_URL_CONTACT = BUYER_PLATFORM_URL + "/#contact"
+const SELLER_PLATFORM_URL = process.env.NEXT_PUBLIC_SELLER_PLATFORM_URL || "https://afreglobalseller.com/"
+
 export default function Home() {
 	return (
 		<div className="flex min-h-screen flex-col">
@@ -15,7 +19,7 @@ export default function Home() {
 					</div>
 					<nav className="flex items-center gap-4">
 						<Link
-							href="https://afre-frontend.vercel.app/"
+							href={BUYER_PLATFORM_URL}
 							className="text-sm font-medium hover:underline underline-offset-4"
 							target="_blank"
 							rel="noopener noreferrer"
@@ -51,7 +55,7 @@ export default function Home() {
 								<Button size="lg" className="bg-[#075b23] hover:bg-[#075b23]/90">
 									<Link href="#subcribe">Join Waitlist</Link>
 								</Button>
-								<Link href="https://afre-frontend.vercel.app/" target="_blank" rel="noopener noreferrer">
+								<Link href={BUYER_PLATFORM_URL} target="_blank" rel="noopener noreferrer">
 									<Button
 										variant="outline"
 										size="lg"
@@ -134,7 +138,7 @@ export default function Home() {
 							</p>
 						</div>
 						<div className="flex flex-col gap-2 min-[400px]:flex-row lg:justify-end">
-							<Link href="https://afre-frontend.vercel.app/" target="_blank" rel="noopener noreferrer">
+							<Link href={BUYER_PLATFORM_URL} target="_blank" rel="noopener noreferrer">
 								<Button size="lg" className="bg-[#075b23] hover:bg-[#075b23]/90">
 									Shop Now
 									<ArrowRight className="ml-2 h-4 w-4" />
@@ -178,7 +182,7 @@ export default function Home() {
 						&copy; {new Date().getFullYear()} Afre. All rights reserved.
 					</p>
 					<div className="flex gap-4">
-						<Link href="https://afre-frontend.vercel.app/#contact" className="text-sm text-muted-foreground hover:underline underline-offset-4">
+						<Link href={BUYER_PLATFORM_URL_CONTACT} className="text-sm text-muted-foreground hover:underline underline-offset-4">
 							Contact
 						</Link>
 					</div>
