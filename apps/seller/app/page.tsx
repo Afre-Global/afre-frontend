@@ -6,6 +6,9 @@ import { ArrowRight, CheckCircle2, Clock, ShoppingBag } from "lucide-react"
 const BUYER_PLATFORM_URL = process.env.NEXT_PUBLIC_BUYER_PLATFORM_URL || "https://www.afreglobal.com/"
 const BUYER_PLATFORM_URL_CONTACT = BUYER_PLATFORM_URL + "/#contact"
 const SELLER_PLATFORM_URL = process.env.NEXT_PUBLIC_SELLER_PLATFORM_URL || "https://afreglobalseller.com/"
+console.log("BUYER_PLATFORM_URL", BUYER_PLATFORM_URL)
+console.log("BUYER_PLATFORM_URL_CONTACT", BUYER_PLATFORM_URL_CONTACT)
+console.log("SELLER_PLATFORM_URL", SELLER_PLATFORM_URL)
 
 export default function Home() {
 	return (

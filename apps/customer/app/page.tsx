@@ -720,7 +720,7 @@ function Footer() {
                     <div>
                         <h3 className="font-semibold text-white mb-4">Contact</h3>
                         <address className="not-italic text-sm space-y-2">
-                            <p>Email: info@afre.com</p>
+                            <p>Email: support@afreglobal.com</p>
                             {/*
                         <p>Lagos Office: 25 Marina Street, Lagos Island, Nigeria</p>
                         <p>Phone: +234 123 456 7890</p>
