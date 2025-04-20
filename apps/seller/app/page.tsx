@@ -6,11 +6,35 @@ import { ArrowRight, CheckCircle2, Clock, ShoppingBag } from "lucide-react"
 const BUYER_PLATFORM_URL = process.env.NEXT_PUBLIC_BUYER_PLATFORM_URL || "https://www.afreglobal.com/"
 const BUYER_PLATFORM_URL_CONTACT = BUYER_PLATFORM_URL + "/#contact"
 const SELLER_PLATFORM_URL = process.env.NEXT_PUBLIC_SELLER_PLATFORM_URL || "https://afreglobalseller.com/"
-console.log("BUYER_PLATFORM_URL", BUYER_PLATFORM_URL)
-console.log("BUYER_PLATFORM_URL_CONTACT", BUYER_PLATFORM_URL_CONTACT)
-console.log("SELLER_PLATFORM_URL", SELLER_PLATFORM_URL)
+
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://127.0.0.1:8000/"
+const SUBSCRIBE_URL = BACKEND_URL + "landing_page/subscribe/"
+ 
 
 export default function Home() {
+    async function handleSubmit (event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+
+        const formData = new FormData(event.currentTarget)
+        const objectFromForm = Object.fromEntries(formData)
+        const jsonData = JSON.stringify(objectFromForm)
+        const requestOption = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: jsonData,
+        }
+
+        const response = await fetch(SUBSCRIBE_URL, requestOption)
+
+        if (response.ok) {
+            const data = await response.json()
+            console.log("Success:", data)
+        }
+        
+    }
+
 	return (
 		<div className="flex min-h-screen flex-col">
 			<header className="sticky top-0 z-40 border-b bg-background">
@@ -159,10 +183,12 @@ export default function Home() {
 							</p>
 						</div>
 						<div className="mx-auto w-full max-w-sm space-y-2">
-							<form className="flex flex-col gap-2 sm:flex-row">
+							<form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row">
 								<input
 									type="email"
+                                    name="email"
 									placeholder="Enter your email"
+                                    required
 									className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
 								/>
 								<Button type="submit" className="bg-[#075b23] hover:bg-[#075b23]/90">
@@ -194,3 +220,4 @@ export default function Home() {
 		</div>
 	)
 }
+
