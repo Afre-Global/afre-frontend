@@ -22,10 +22,9 @@ export default function Home() {
             <Header />
             <main className="flex-1">
                 <HeroSection />
-                <VisionSection />
+                <MissionVisionSection />
                 <ProductsSection />
                 <AboutSection />
-                <SustainabilitySection />
                 <TeamSection />
                 <PartnerSection />
                 <ContactSection />
@@ -52,9 +51,6 @@ function Header() {
                     </Link>
                     <Link href="#about" className="text-sm font-medium hover:text-[#075b23] transition-colors">
                         About Us
-                    </Link>
-                    <Link href="#sustainability" className="text-sm font-medium hover:text-[#075b23] transition-colors">
-                        Sustainability
                     </Link>
                     <Link href="#team" className="text-sm font-medium hover:text-[#075b23] transition-colors">
                         Team
@@ -117,9 +113,6 @@ function MobileNav() {
                             <Link href="#about" className="text-lg font-medium hover:text-[#075b23] transition-colors" onClick={() => setOpen(false)}>
                                 About Us
                             </Link>
-                            <Link href="#sustainability" className="text-lg font-medium hover:text-[#075b23] transition-colors" onClick={() => setOpen(false)}>
-                                Sustainability
-                            </Link>
                             <Link href="#team" className="text-lg font-medium hover:text-[#075b23] transition-colors" onClick={() => setOpen(false)}>
                                 Team
                             </Link>
@@ -154,14 +147,12 @@ function HeroSection() {
                 />
             </div>
             <div className="container relative z-10 flex flex-col items-center text-center">
-                <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-                    Revolutionizing African Agriculture
-                </h1>
-                <p className="mt-6 max-w-2xl text-lg text-gray-200">
-                    Afre is a digital platform connecting farmers to buyers,
-                    financial services, and training opportunities to ensure
-                    increased market access, fair prices and sustainable practices.
+                <p className="mt-6 max-w-3xl text-3xl text-gray-200">
+                    Afre is a digital platform where farmers and buyers connect directly. But it is more than just that!
                 </p>
+                <h1 className="max-w-6xl text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+                    We Educate. We Connect. We Enrich.
+                </h1>
                 <div className="mt-10 flex flex-wrap gap-4 justify-center">
                     <a
                         href="#vision"
@@ -181,33 +172,34 @@ function HeroSection() {
     )
 }
 
-function VisionSection() {
+function MissionVisionSection() {
     return (
         <section id="vision" className="py-20 bg-gradient-to-br from-amber-50 to-green-50">
             <div className="container">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Vision</h2>
+                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Mission</h2>
                     <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                        We&apos;re on a mission to transform African agriculture and bring its exceptional products to the global
-                        market.
+                        Our mission is to give farmers more than just a place to sell. We are here to help them learn, grow better crops, and earn what they truly deserve.
+                        For buyers, we open the door to more options, direct sourcing and better prices.
                     </p>
                 </div>
                 <div className="grid gap-12 md:grid-cols-2 items-center">
                     <div>
-                        <h3 className="text-2xl font-bold mb-4">Bridging Farmers to Global Markets</h3>
+                        <h3 className="text-2xl font-bold mb-4">Better Access to Market</h3>
                         <p className="text-lg text-muted-foreground mb-6">
-                            Afre is building the infrastructure and partnerships needed to connect African farmers directly to
-                            international buyers, minimizing the involvement middlemen and ensuring fair compensation.
+                            For farmers, Afre aims to provide direct access to trusted buyers-no middlemen, no hidden prices and the ability to earn more.
                         </p>
-                        <h3 className="text-2xl font-bold mb-4">Sustainable Agricultural Practices</h3>
                         <p className="text-lg text-muted-foreground mb-6">
-                            We&apos;re committed to promoting sustainable farming methods that preserve Africa&apos;s rich soil and
-                            biodiversity while producing premium quality crops.
+                            For Buyers, Afre connects directly with verified farmers to get quality products, traceability, and better pricing.
                         </p>
-                        <h3 className="text-2xl font-bold mb-4">Technology-Driven Farming</h3>
+
+                        <h3 className="text-2xl font-bold mb-4">Technology-Driven Support</h3>
+                        <p className="text-lg text-muted-foreground mb-6">
+                            For farmers, Afre aims to provide access to AI tools helping farmers detect crop issues, get soil and planting advice,
+                            and track weather patterns - making it easier to farm sustainably and reduce waste.
+                        </p>
                         <p className="text-lg text-muted-foreground">
-                            By integrating modern agricultural technology with traditional farming knowledge, we&apos;re helping farmers
-                            increase yields while maintaining the highest quality standards.
+                            For Buyers, Afre aims to provide access to AI tools that help improve user experience by suggesting products based on preferences and purchasing history.
                         </p>
                     </div>
                     <div className="relative h-[500px] rounded-lg overflow-hidden">
@@ -227,51 +219,19 @@ function VisionSection() {
 function ProductsSection() {
     const products = [
         {
-            name: "Premium Cocoa",
+            name: "Unroasted Cocoa Beans",
             description:
-                "Rich, aromatic cocoa beans from Africa's fertile soils, perfect for premium chocolate production. We're developing partnerships with local farmers to bring this exceptional product to global markets.",
+                "Experience the true flavour of quality cocoa beans sourced from the heart of Nigeria's rich cocoa growing regions.",
             image: "/cocoa.jpeg",
             icon: <Leaf className="h-10 w-10 text-amber-600" />,
             link: "#cocoa",
         },
         {
-            name: "Specialty Coffee",
+            name: "Green Coffee Beans",
             description:
-                "Single-origin coffee with complex flavor profiles, grown in Africa's highland regions. Our upcoming coffee program will focus on quality, sustainability, and fair compensation for farmers.",
+                "Access green coffee beans grown in the lush, fertile lands of Nigeria, offering a distinct flavour profile that stands out in the coffee world.",
             image: "/coffee.jpeg",
             icon: <Coffee className="h-10 w-10 text-amber-800" />,
-            link: "#coffee",
-        },
-        {
-            name: "Sesame Seed",
-            description:
-                "High-quality sesame seeds with exceptional oil content, grown in Africa's tropical climate. Our sesame program is designed to support local farmers and promote sustainable farming practices.",
-            image: "/sesame_seed.jpeg",
-            icon: <Bean className="h-10 w-10 text-[#075b23]" />,
-            link: "#sesame",
-        },
-        {
-            name: "Fresh Produce",
-            description:
-                "Fruits, vegetables, and more directly from farms to your table. Our upcoming fresh produce program will focus on quality, sustainability, and fair compensation for farmers.",
-            image: "/fresh_produce.jpeg",
-            icon: <Apple className="h-10 w-10 text-[#075b23]" />,
-            link: "#coffee",
-        },
-        {
-            name: "Dairy & Livestock",
-            description:
-                "Quality dairy products and livestock supplies.",
-            image: "/dairy.jpeg",
-            icon: <Milk className="h-10 w-10 text-[#075b23]" />,
-            link: "#coffee",
-        },
-        {
-            name: "Seed & Supplies",
-            description:
-                "Quality seeds and essential farming supplies to help farmers increase yields and maintain the highest quality standards.",
-            image: "/seeding.jpeg",
-            icon: <Bean className="h-10 w-10 text-[#075b23]" />,
             link: "#coffee",
         },
     ]
@@ -285,7 +245,9 @@ function ProductsSection() {
                         Discover the high-potential agricultural products we&apos;re developing with African farmers.
                     </p>
                 </div>
-                <div className="grid gap-8 md:grid-cols-3">
+                {/* Change width
+                    */}
+                <div className="grid gap-8 md:grid-cols-2 w-45">
                     {products.map((product, index) => (
                         <div
                             key={index}
@@ -471,7 +433,7 @@ function PartnerSection() {
             <div className="container text-center">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Partner With Afre</h2>
                 <p className="mt-4 text-lg max-w-2xl mx-auto">
-                    Join us in our mission to transform African agriculture and bring premium products to global markets.
+                    Join us in our mission to bring premium products the global market while improving farmers livelihoods.
                 </p>
                 <div className="mt-10 grid md:grid-cols-3 gap-8">
                     <div className="bg-gradient-to-br from-white/10 to-transparent p-6 rounded-lg border border-white/20 hover:bg-white/10 transition-colors">
@@ -636,8 +598,8 @@ function Footer() {
                             <span className="text-xl font-bold text-white">Afre</span>
                         </div>
                         <p className="text-sm">
-                            Pioneering agricultural startup connecting African farmers to global markets through sustainable
-                            practices.
+                            Afre is more than just a platform for markert access.
+                            We educate. We connect. We enrich.
                         </p>
                         <div className="flex gap-4 mt-4">
                             {social_media.map((social, index) => (
@@ -666,16 +628,6 @@ function Footer() {
                             <li>
                                 <Link href="#products" className="hover:text-white">
                                     Coffee
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#products" className="hover:text-white">
-                                    Sesame Seed
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="#sustainability" className="hover:text-white">
-                                    Sustainable Farming
                                 </Link>
                             </li>
                             <li>
