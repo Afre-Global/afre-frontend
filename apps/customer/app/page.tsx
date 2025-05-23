@@ -148,7 +148,7 @@ function HeroSection() {
             </div>
             <div className="container relative z-10 flex flex-col items-center text-center">
                 <p className="mt-6 max-w-3xl text-3xl text-gray-200">
-                    Afre is a digital platform where farmers and buyers connect directly. But it is more than just that!
+                    More than just a platform for market access.
                 </p>
                 <h1 className="max-w-6xl text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
                     We Educate. We Connect. We Enrich.
@@ -179,27 +179,30 @@ function MissionVisionSection() {
                 <div className="text-center mb-16">
                     <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Mission</h2>
                     <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Our mission is to give farmers more than just a place to sell. We are here to help them learn, grow better crops, and earn what they truly deserve.
-                        For buyers, we open the door to more options, direct sourcing and better prices.
+                        At our heart, we are here for the farmer. We use AI and advanced technology to create an ecosystem where farmers, agribusinesses, and buyers can easily gain knowledge,
+                        forge meaningful connections, make transactions, and enrich their operations. Our mission is to empower everyone in the agricultural community to succeed and build a
+                        more prosperous, sustainable world together.
                     </p>
                 </div>
                 <div className="grid gap-12 md:grid-cols-2 items-center">
                     <div>
                         <h3 className="text-2xl font-bold mb-4">Better Access to Market</h3>
                         <p className="text-lg text-muted-foreground mb-6">
-                            For farmers, Afre aims to provide direct access to trusted buyers-no middlemen, no hidden prices and the ability to earn more.
+                            For farmers and agribusinesses, Afre aims to provide direct access to trusted buyers-no middlemen, no hidden prices and the ability to earn more.
                         </p>
                         <p className="text-lg text-muted-foreground mb-6">
-                            For Buyers, Afre connects directly with verified farmers to get quality products, traceability, and better pricing.
+                            For buyers, Afre connects directly with verified farmers to get quality products, traceability, and better pricing.
                         </p>
 
                         <h3 className="text-2xl font-bold mb-4">Technology-Driven Support</h3>
                         <p className="text-lg text-muted-foreground mb-6">
-                            For farmers, Afre aims to provide access to AI tools helping farmers detect crop issues, get soil and planting advice,
-                            and track weather patterns - making it easier to farm sustainably and reduce waste.
+                            For farmers and agribusinesses, Afre aims to provide access to AI tools helping farmers and agribusinesses make smarter decisions.
+                            {/*
+                            detect crop issues, get soil and planting advice, and track weather patterns - making it easier to farm sustainably and reduce waste.
+                            */}
                         </p>
                         <p className="text-lg text-muted-foreground">
-                            For Buyers, Afre aims to provide access to AI tools that help improve user experience by suggesting products based on preferences and purchasing history.
+                            For buyers, Afre aims to provide access to AI tools that help improve user experience by suggesting products based on preferences and purchasing history.
                         </p>
                     </div>
                     <div className="relative h-[500px] rounded-lg overflow-hidden">
@@ -461,8 +464,8 @@ function PartnerSection() {
                         </a>
                     </div>
                     <div className="bg-gradient-to-br from-white/10 to-transparent p-6 rounded-lg border border-white/20 hover:bg-white/10 transition-colors">
-                        <h3 className="text-xl font-bold mb-3">Farmers</h3>
-                        <p className="mb-4">Join our network of farmers committed to sustainable practices and premium quality.</p>
+                        <h3 className="text-xl font-bold mb-3">Farmers and agribusinesses</h3>
+                        <p className="mb-4">Join our network of farmers and agribusinesses committed to sustainable practices and premium quality.</p>
                         <a
                             href="#contact"
                             className="inline-flex items-center justify-center rounded-md text-sm font-medium h-9 px-4 py-2 border border-white text-white hover:bg-white/20 transition-colors"
