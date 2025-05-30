@@ -1,16 +1,20 @@
-import { BuyProductSection, ReviewSection } from "@/app/product/[id]/components";
+import {
+  BuyProductSection,
+  ReviewSection,
+} from "@/app/product/[id]/components";
 import { NavBar } from "@repo/shared/ui";
 import { getProduct, getReviews } from "@/lib/requests/product";
 import React from "react";
 
 export type ProductPageInfo = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-export default async function ProductPage({ params }: ProductPageInfo) {
-  const productData = getProduct(await params.id);
+export default async function ProductPage(props: ProductPageInfo) {
+  const params = await props.params;
+  const productData = getProduct(params.id);
   const reviewsData = getReviews(params.id);
 
   const [product, reviews] = await Promise.all([productData, reviewsData]);
