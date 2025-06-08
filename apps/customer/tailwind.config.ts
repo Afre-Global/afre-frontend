@@ -2,11 +2,14 @@
 
 import type { Config } from "tailwindcss";
 import sharedConfig from "@repo/tailwind-config";
+import {getPackageDir} from "@repo/shared/utils/fs"
+
+const sharedPackageDir = getPackageDir().unwrap()
 
 const config: Pick<Config, "darkMode" | "content" | "presets" | "theme" | "plugins"> = {
 	darkMode: ["class"],
 	// darkMode: "class",
-	content: ["./app/**/*.tsx"],
+	content: ["./app/**/*.tsx", "./app/**/index.ts", `${sharedPackageDir}/src/**/*.tsx`],
 	presets: [sharedConfig],
 	theme: {
 		container: {
@@ -18,19 +21,39 @@ const config: Pick<Config, "darkMode" | "content" | "presets" | "theme" | "plugi
 		},
 		extend: {
 			colors: {
-				border: "hsl(var(--border))",
-				input: "hsl(var(--input))",
-				ring: "hsl(var(--ring))",
-				background: "hsl(var(--background))",
-				foreground: "hsl(var(--foreground))",
-				muted: {
-					DEFAULT: "hsl(var(--muted))",
-					foreground: "hsl(var(--muted-foreground))",
-				},
-				accent: {
-					DEFAULT: "hsl(var(--accent))",
-					foreground: "hsl(var(--accent-foreground))",
-				},
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
 			},
 			borderRadius: {
 				lg: "var(--radius)",
