@@ -1,9 +1,6 @@
 {
   "extends": "@repo/typescript-config/react-library.json",
   "compilerOptions": {
-    "paths": {
-      "@shared/*": ["./src/*"]
-    },
     "outDir": "dist"
   },
   "include": ["src"],

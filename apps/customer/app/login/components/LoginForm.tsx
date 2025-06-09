@@ -17,9 +17,11 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@repo/shared/hooks";
 
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 type LoginFormProps = {};
+/* eslint-enable @typescript-eslint/no-empty-object-type */
 
-export function LoginForm({}: LoginFormProps) {
+export function LoginForm(_: LoginFormProps) {
   const { toast } = useToast();
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
@@ -31,10 +33,7 @@ export function LoginForm({}: LoginFormProps) {
     },
   });
 
-  const onSubmitForm: SubmitHandler<LoginFormValSchema> = async (
-    data,
-    event,
-  ) => {
+  const onSubmitForm: SubmitHandler<LoginFormValSchema> = async (data, event) => {
     event?.preventDefault();
     setLoading(true);
     const loginResponse = await signIn("credentials", {
@@ -59,10 +58,7 @@ export function LoginForm({}: LoginFormProps) {
 
   return (
     <Form {...loginForm}>
-      <form
-        className="w-full space-y-8"
-        onSubmit={loginForm.handleSubmit(onSubmitForm)}
-      >
+      <form className="w-full space-y-8" onSubmit={loginForm.handleSubmit(onSubmitForm)}>
         <div className="space-y-4">
           {/* Email */}
           <FormField
@@ -88,12 +84,7 @@ export function LoginForm({}: LoginFormProps) {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="password"
-                      {...field}
-                      className="w-full"
-                      type="password"
-                    />
+                    <Input placeholder="password" {...field} className="w-full" type="password" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

@@ -4,4 +4,4 @@ export * from "./Input";
 export * from "./CarouselComponents";
 export * from "./Navbar";
 export * from "./SessionProvider";
-export * from "./ButtonComponents"
+export * from "./ButtonComponents";

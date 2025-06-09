@@ -72,10 +72,7 @@ function Header() {
           >
             About Us
           </Link>
-          <Link
-            href="#team"
-            className="text-sm font-medium hover:text-[#075b23] transition-colors"
-          >
+          <Link href="#team" className="text-sm font-medium hover:text-[#075b23] transition-colors">
             Team
           </Link>
           <Link
@@ -220,21 +217,15 @@ function HeroSection() {
 
 function MissionVisionSection() {
   return (
-    <section
-      id="vision"
-      className="py-20 bg-gradient-to-br from-amber-50 to-green-50"
-    >
+    <section id="vision" className="py-20 bg-gradient-to-br from-amber-50 to-green-50">
       <div className="container">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Our Mission
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Mission</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            At our heart, we are here for the farmer. We use AI and advanced
-            technology to create an ecosystem where farmers, agribusinesses, and
-            buyers can easily gain knowledge, forge meaningful connections, make
-            transactions, and enrich their operations. Our mission is to empower
-            everyone in the agricultural community to succeed and build a more
+            At our heart, we are here for the farmer. We use AI and advanced technology to create an
+            ecosystem where farmers, agribusinesses, and buyers can easily gain knowledge, forge
+            meaningful connections, make transactions, and enrich their operations. Our mission is
+            to empower everyone in the agricultural community to succeed and build a more
             prosperous, sustainable world together.
           </p>
         </div>
@@ -242,29 +233,25 @@ function MissionVisionSection() {
           <div>
             <h3 className="text-2xl font-bold mb-4">Better Access to Market</h3>
             <p className="text-lg text-muted-foreground mb-6">
-              For farmers and agribusinesses, Afre aims to provide direct access
-              to trusted buyers-no middlemen, no hidden prices and the ability
-              to earn more.
+              For farmers and agribusinesses, Afre aims to provide direct access to trusted
+              buyers-no middlemen, no hidden prices and the ability to earn more.
             </p>
             <p className="text-lg text-muted-foreground mb-6">
-              For buyers, Afre connects directly with verified farmers to get
-              quality products, traceability, and better pricing.
+              For buyers, Afre connects directly with verified farmers to get quality products,
+              traceability, and better pricing.
             </p>
 
-            <h3 className="text-2xl font-bold mb-4">
-              Technology-Driven Support
-            </h3>
+            <h3 className="text-2xl font-bold mb-4">Technology-Driven Support</h3>
             <p className="text-lg text-muted-foreground mb-6">
-              For farmers and agribusinesses, Afre aims to provide access to AI
-              tools helping farmers and agribusinesses make smarter decisions.
+              For farmers and agribusinesses, Afre aims to provide access to AI tools helping
+              farmers and agribusinesses make smarter decisions.
               {/*
                             detect crop issues, get soil and planting advice, and track weather patterns - making it easier to farm sustainably and reduce waste.
                             */}
             </p>
             <p className="text-lg text-muted-foreground">
-              For buyers, Afre aims to provide access to AI tools that help
-              improve user experience by suggesting products based on
-              preferences and purchasing history.
+              For buyers, Afre aims to provide access to AI tools that help improve user experience
+              by suggesting products based on preferences and purchasing history.
             </p>
           </div>
           <div className="relative h-[500px] rounded-lg overflow-hidden">
@@ -305,12 +292,10 @@ function ProductsSection() {
     <section id="products" className="py-20">
       <div className="container">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Our Focus Areas
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Focus Areas</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Discover the high-potential agricultural products we&apos;re
-            developing with African farmers.
+            Discover the high-potential agricultural products we&apos;re developing with African
+            farmers.
           </p>
         </div>
         {/* Change width
@@ -332,9 +317,7 @@ function ProductsSection() {
               <div className="p-6">
                 <div className="mb-4">{product.icon}</div>
                 <h3 className="text-xl font-bold">{product.name}</h3>
-                <p className="mt-2 text-muted-foreground">
-                  {product.description}
-                </p>
+                <p className="mt-2 text-muted-foreground">{product.description}</p>
                 {/*<a
                                 href={product.link}
                                 className="mt-4 inline-flex items-center justify-center rounded-md text-sm font-medium h-9 px-4 py-2 border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors"
@@ -365,28 +348,23 @@ function AboutSection() {
             />
           </div>
           <div>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Our Story
-            </h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Story</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Afre&apos;s platform was born from the CEO&apos;s 2021 experience
-              importing cocoa beans from his grandfather&apos;s Nigerian farm to
-              Canada, where he witnessed firsthand how middlemen and exporters
-              capture most profits while farmers who do the actual work earn
-              significantly less. This revelation highlighted a widespread
-              problem affecting millions of African farmers who struggle with
-              limited market access, insufficient funding, inadequate market
-              information, and inability to meet global standards.
+              Afre&apos;s platform was born from the CEO&apos;s 2021 experience importing cocoa
+              beans from his grandfather&apos;s Nigerian farm to Canada, where he witnessed
+              firsthand how middlemen and exporters capture most profits while farmers who do the
+              actual work earn significantly less. This revelation highlighted a widespread problem
+              affecting millions of African farmers who struggle with limited market access,
+              insufficient funding, inadequate market information, and inability to meet global
+              standards.
             </p>
             <p className="mt-4 text-lg text-muted-foreground">
-              To address these challenges, Afre created an all-in-one platform
-              that empowers farmers by connecting them directly with buyers,
-              providing access to microfinance institutions, and offering
-              training on sustainable farming practices to help them qualify for
-              international certifications. Operating on a freemium model that
-              generates revenue through service fees, subscriptions,
-              partnerships, and advertising, Afre is starting with Nigerian
-              farmers before expanding across Africa and eventually globally.
+              To address these challenges, Afre created an all-in-one platform that empowers farmers
+              by connecting them directly with buyers, providing access to microfinance
+              institutions, and offering training on sustainable farming practices to help them
+              qualify for international certifications. Operating on a freemium model that generates
+              revenue through service fees, subscriptions, partnerships, and advertising, Afre is
+              starting with Nigerian farmers before expanding across Africa and eventually globally.
             </p>
             {/*
                         <div className="mt-8 grid grid-cols-2 gap-4">
@@ -417,18 +395,15 @@ function AboutSection() {
 
 function SustainabilitySection() {
   return (
-    <section
-      id="sustainability"
-      className="py-20 bg-gradient-to-br from-green-100 to-emerald-50"
-    >
+    <section id="sustainability" className="py-20 bg-gradient-to-br from-green-100 to-emerald-50">
       <div className="container">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             Our Commitment to Sustainability
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            We believe in responsible farming that protects the environment and
-            supports local communities.
+            We believe in responsible farming that protects the environment and supports local
+            communities.
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-3">
@@ -436,36 +411,30 @@ function SustainabilitySection() {
             <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
               <Leaf className="h-6 w-6 text-green-700" />
             </div>
-            <h3 className="text-xl font-bold text-green-800">
-              Eco-Friendly Farming
-            </h3>
+            <h3 className="text-xl font-bold text-green-800">Eco-Friendly Farming</h3>
             <p className="mt-2 text-green-700">
-              We promote organic farming methods that minimize environmental
-              impact and preserve soil health for future generations.
+              We promote organic farming methods that minimize environmental impact and preserve
+              soil health for future generations.
             </p>
           </div>
           <div className="bg-gradient-to-br from-white to-green-50 p-6 rounded-lg shadow-sm border border-green-100">
             <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
               <MapPin className="h-6 w-6 text-green-700" />
             </div>
-            <h3 className="text-xl font-bold text-green-800">
-              Community Support
-            </h3>
+            <h3 className="text-xl font-bold text-green-800">Community Support</h3>
             <p className="mt-2 text-green-700">
-              We invest in local communities through education programs,
-              healthcare initiatives, and infrastructure development.
+              We invest in local communities through education programs, healthcare initiatives, and
+              infrastructure development.
             </p>
           </div>
           <div className="bg-gradient-to-br from-white to-green-50 p-6 rounded-lg shadow-sm border border-green-100">
             <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
               <Banknote className="h-6 w-6 text-green-700" />
             </div>
-            <h3 className="text-xl font-bold text-green-800">
-              Fair Trade Practices
-            </h3>
+            <h3 className="text-xl font-bold text-green-800">Fair Trade Practices</h3>
             <p className="mt-2 text-green-700">
-              We ensure farmers receive fair compensation for their products,
-              creating sustainable livelihoods and economic stability.
+              We ensure farmers receive fair compensation for their products, creating sustainable
+              livelihoods and economic stability.
             </p>
           </div>
         </div>
@@ -494,12 +463,9 @@ function TeamSection() {
     <section id="team" className="py-20">
       <div className="container">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Our Team
-          </h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Our Team</h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Meet the passionate experts behind Afre&apos;s mission to transform
-            African agriculture.
+            Meet the passionate experts behind Afre&apos;s mission to transform African agriculture.
           </p>
         </div>
         <div className="grid gap-8 md:grid-cols-2">
@@ -509,17 +475,10 @@ function TeamSection() {
               className="bg-gradient-to-b from-white to-green-50 p-6 rounded-lg border border-green-100 text-center hover:shadow-lg transition-shadow"
             >
               <div className="relative w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  fill
-                  className="object-cover"
-                />
+                <Image src={member.image} alt={member.name} fill className="object-cover" />
               </div>
               <h3 className="text-xl font-bold">{member.name}</h3>
-              <p className="text-sm text-muted-foreground mb-4">
-                {member.title}
-              </p>
+              <p className="text-sm text-muted-foreground mb-4">{member.title}</p>
               <p className="text-muted-foreground">{member.bio}</p>
             </div>
           ))}
@@ -536,19 +495,17 @@ function PartnerSection() {
       className="py-20 bg-gradient-to-br from-amber-800 to-amber-900 text-white"
     >
       <div className="container text-center">
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Partner With Afre
-        </h2>
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Partner With Afre</h2>
         <p className="mt-4 text-lg max-w-2xl mx-auto">
-          Join us in our mission to bring premium products the global market
-          while improving farmers livelihoods.
+          Join us in our mission to bring premium products the global market while improving farmers
+          livelihoods.
         </p>
         <div className="mt-10 grid md:grid-cols-3 gap-8">
           <div className="bg-gradient-to-br from-white/10 to-transparent p-6 rounded-lg border border-white/20 hover:bg-white/10 transition-colors">
             <h3 className="text-xl font-bold mb-3">Investors</h3>
             <p className="mb-4">
-              Support our growth as we build sustainable agricultural
-              infrastructure and partnerships.
+              Support our growth as we build sustainable agricultural infrastructure and
+              partnerships.
             </p>
             <a
               href="#contact"
@@ -560,8 +517,8 @@ function PartnerSection() {
           <div className="bg-gradient-to-br from-white/10 to-transparent p-6 rounded-lg border border-white/20 hover:bg-white/10 transition-colors">
             <h3 className="text-xl font-bold mb-3">Distributors</h3>
             <p className="mb-4">
-              Connect with us to discuss future distribution of premium African
-              agricultural products.
+              Connect with us to discuss future distribution of premium African agricultural
+              products.
             </p>
             <a
               href="#contact"
@@ -571,12 +528,10 @@ function PartnerSection() {
             </a>
           </div>
           <div className="bg-gradient-to-br from-white/10 to-transparent p-6 rounded-lg border border-white/20 hover:bg-white/10 transition-colors">
-            <h3 className="text-xl font-bold mb-3">
-              Farmers and agribusinesses
-            </h3>
+            <h3 className="text-xl font-bold mb-3">Farmers and agribusinesses</h3>
             <p className="mb-4">
-              Join our network of farmers and agribusinesses committed to
-              sustainable practices and premium quality.
+              Join our network of farmers and agribusinesses committed to sustainable practices and
+              premium quality.
             </p>
             <a
               href="#contact"
@@ -597,12 +552,10 @@ function ContactSection() {
       <div className="container">
         <div className="grid gap-12 md:grid-cols-2 items-center">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
-              Get In Touch
-            </h2>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">Get In Touch</h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Interested in learning more about Afre or exploring partnership
-              opportunities? We&apos;d love to hear from you.
+              Interested in learning more about Afre or exploring partnership opportunities?
+              We&apos;d love to hear from you.
             </p>
             <div className="space-y-4">
               {/*
@@ -626,18 +579,15 @@ function ContactSection() {
               {social_media.map((social, index) => (
                 <a
                   target="_blank"
+                  rel="noreferrer"
                   key={social.name}
                   href={social.link}
                   className="inline-flex items-center justify-center rounded-md h-10 w-10 border border-input hover:bg-accent hover:text-accent-foreground transition-colors"
                   aria-label={social.name}
                 >
-                  {social.name === "Linkedin" && (
-                    <Linkedin className="h-5 w-5" />
-                  )}
+                  {social.name === "Linkedin" && <Linkedin className="h-5 w-5" />}
                   {social.name === "X" && <X className="h-5 w-5" />}
-                  {social.name === "Instagram" && (
-                    <Instagram className="h-5 w-5" />
-                  )}
+                  {social.name === "Instagram" && <Instagram className="h-5 w-5" />}
                 </a>
               ))}
             </div>
@@ -647,10 +597,7 @@ function ContactSection() {
             <form className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                     Name
                   </label>
                   <input
@@ -662,10 +609,7 @@ function ContactSection() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700"
-                  >
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                     Email
                   </label>
                   <input
@@ -678,10 +622,7 @@ function ContactSection() {
                 </div>
               </div>
               <div className="space-y-2">
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                   Subject
                 </label>
                 <input
@@ -693,10 +634,7 @@ function ContactSection() {
                 />
               </div>
               <div className="space-y-2">
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-gray-700"
-                >
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                   Message
                 </label>
                 <textarea
@@ -732,25 +670,22 @@ function Footer() {
               <span className="text-xl font-bold text-white">Afre</span>
             </div>
             <p className="text-sm">
-              Afre is more than just a platform for markert access. We educate.
-              We connect. We enrich.
+              Afre is more than just a platform for markert access. We educate. We connect. We
+              enrich.
             </p>
             <div className="flex gap-4 mt-4">
-              {social_media.map((social, index) => (
+              {social_media.map((social) => (
                 <a
                   target="_blank"
+                  rel="noreferrer"
                   key={social.name}
                   href={social.link}
                   className="inline-flex items-center justify-center rounded-md h-10 w-10 text-stone-300 hover:text-white transition-colors"
                   aria-label={social.name}
                 >
-                  {social.name === "Linkedin" && (
-                    <Linkedin className="h-5 w-5" />
-                  )}
+                  {social.name === "Linkedin" && <Linkedin className="h-5 w-5" />}
                   {social.name === "X" && <X className="h-5 w-5" />}
-                  {social.name === "Instagram" && (
-                    <Instagram className="h-5 w-5" />
-                  )}
+                  {social.name === "Instagram" && <Instagram className="h-5 w-5" />}
                 </a>
               ))}
             </div>

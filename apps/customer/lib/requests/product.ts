@@ -6,9 +6,7 @@ import { UnexpectedErr } from "../errors";
  * @throws { AuthErr } when user is not authorized to view data
  * @throws { NotfoundErr } if productId does not exist
  **/
-export async function getProduct(
-  productId: string,
-): Promise<GetProductResponse> {
+export async function getProduct(productId: string): Promise<GetProductResponse> {
   // TODO: write code for get product information
 
   try {
@@ -27,7 +25,6 @@ export async function getProduct(
   } catch (err) {
     throw new UnexpectedErr({
       id: "GET_PRODUCT_ERROR",
-      cause: err,
     });
   }
 }
@@ -37,9 +34,7 @@ export async function getProduct(
  * @throws { UnexpectedErr } for internal server errors or request that could not be properly made
  * @throws { NotfoundErr } if productId does not exist
  * */
-export async function getReviews(
-  productId: string,
-): Promise<GetReviewsResponse> {
+export async function getReviews(productId: string): Promise<GetReviewsResponse> {
   return {
     averageRating: 4.5,
     numberOfRatings: 1800,

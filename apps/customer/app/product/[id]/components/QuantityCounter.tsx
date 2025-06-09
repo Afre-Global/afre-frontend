@@ -9,12 +9,12 @@ type QuantityCounterProps = {
   limit?: number;
 };
 
-export function QuantityCounter(props: QuantityCounterProps) {
+export function QuantityCounter({ onQuantityChange, limit }: QuantityCounterProps) {
   const [quantity, setQuantity] = React.useState(1);
 
   const increment = () => {
     setQuantity((prevState) => {
-      if (props.limit !== undefined && quantity === props.limit) {
+      if (limit !== undefined && quantity === limit) {
         return prevState;
       }
       return prevState + 1;
@@ -31,8 +31,8 @@ export function QuantityCounter(props: QuantityCounterProps) {
   };
 
   React.useEffect(() => {
-    props.onQuantityChange?.(quantity);
-  }, [quantity]);
+    onQuantityChange?.(quantity);
+  }, [quantity, onQuantityChange]);
 
   return (
     <div className="flex space-x-5 items-center">

@@ -51,10 +51,7 @@ export async function login(
  * `accessToken` and `accessTokenExpires`. If an error occurs,
  * returns the old token and an error property
  */
-export async function refreshAccessToken(
-  backendUrl: string,
-  refreshToken: string,
-) {
+export async function refreshAccessToken(backendUrl: string, refreshToken: string) {
   try {
     const response = await fetch(backendUrl, {
       headers: {

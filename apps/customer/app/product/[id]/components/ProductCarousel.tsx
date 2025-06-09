@@ -15,8 +15,7 @@ export type ProductCarouselProps = {
 
 export function ProductCarousel(props: ProductCarouselProps) {
   const [topCarouselApi, setTopCarouselApi] = React.useState<CarouselApi>();
-  const [bottomCarouselApi, setBottomCarouselApi] =
-    React.useState<CarouselApi>();
+  const [bottomCarouselApi, setBottomCarouselApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
 
   React.useEffect(() => {
@@ -32,7 +31,7 @@ export function ProductCarousel(props: ProductCarouselProps) {
   React.useEffect(() => {
     bottomCarouselApi?.scrollTo(current);
     topCarouselApi?.scrollTo(current);
-  }, [current]);
+  }, [current, bottomCarouselApi, topCarouselApi]);
 
   return (
     <div className="w-full space-y-5">

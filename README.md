@@ -82,3 +82,30 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
 - [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+
+## Using Linter and Formatter
+
+In order to push a change to your feature branch the codebase has a pre-push hook to check if your code confirms to the repository's linting and formatting rules. An errors on push will mostly be because of linting/formatting rule violations. In order to check, please run these commands
+
+1. Linting
+
+```
+pnpm run lint
+```
+
+2. Formatting
+
+```
+pnpm run format:check
+```
+
+These will give you files (and/or line numbers) that are causing issues that you should fix. When all issues have been resolved then you should be able to push your changes without problems.
+In order to quickly fix formatting issues you can run this command.
+
+```
+pnpm run format
+```
+
+Linting issues have to be addressed manually.
+
+Note: If you need to disable a linting/formatting rule please attach the reason to your pull request or inform the team before merging.

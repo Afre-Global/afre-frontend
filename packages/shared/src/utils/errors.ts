@@ -11,10 +11,7 @@ export class ErrorOr<T> {
   }
 
   static err<T = never>(error: Error | string): ErrorOr<T> {
-    return new ErrorOr<T>(
-      undefined,
-      typeof error === "string" ? new Error(error) : error,
-    );
+    return new ErrorOr<T>(undefined, typeof error === "string" ? new Error(error) : error);
   }
 
   isOk(): this is { value: T } & ErrorOr<T> {
