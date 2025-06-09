@@ -50,10 +50,7 @@ export function ReviewSection(props: ReviewSectionProps) {
           />
 
           {/* RatingCount  */}
-          <RatingCount
-            totalRatings={props.numberOfRatings}
-            ratingInfo={props.ratingInfo}
-          />
+          <RatingCount totalRatings={props.numberOfRatings} ratingInfo={props.ratingInfo} />
         </div>
         <hr className="bg-gray-300 h-[1px] w-full" />
         {/* Ratings */}
@@ -99,7 +96,7 @@ function RatingCount(props: RatingCountProps) {
     <div className={cn("", props.className)}>
       {props.ratingInfo
         .sort((a, b) => a.ratingValue - b.ratingValue)
-        .map((val,ind) => {
+        .map((val, ind) => {
           return (
             <RatingCountItem
               key={ind}
@@ -122,7 +119,7 @@ type RatingCountItemProps = {
 function RatingCountItem(props: RatingCountItemProps) {
   const numberFmt = new Intl.NumberFormat();
   return (
-    <div  className="flex space-x-6 items-center justify-between w-max">
+    <div className="flex space-x-6 items-center justify-between w-max">
       <div className="space-x-2 flex items-center">
         <IoMdStar />
         <p>{props.ratingValue}</p>
@@ -146,17 +143,9 @@ type RatingScoreAndInfoProps = {
 function RatingScoreAndInfo(props: RatingScoreAndInfoProps) {
   const numberFmt = new Intl.NumberFormat();
   return (
-    <div
-      className={cn(
-        "flex flex-col items-center w-max space-y-3",
-        props.className,
-      )}
-    >
+    <div className={cn("flex flex-col items-center w-max space-y-3", props.className)}>
       <h1 className="text-5xl md:text-7xl">{props.averageRating.toFixed(1)}</h1>
-      <ProductRating
-        className="text-black space-x-1"
-        score={props.averageRating}
-      />
+      <ProductRating className="text-black space-x-1" score={props.averageRating} />
       <p>{numberFmt.format(props.numberOfRatings)} ratings</p>
     </div>
   );

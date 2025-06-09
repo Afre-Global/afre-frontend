@@ -34,16 +34,12 @@ export function BuyProductSection(props: BuyProductSectionProps) {
           <div className="bg-black h-1 w-2/3" />
         </div>
         {/* Product Price */}
-        <h4 className="text-lg md:text-2xl font-semibold my-3">
-          {props.productPrice}
-        </h4>
+        <h4 className="text-lg md:text-2xl font-semibold my-3">{props.productPrice}</h4>
         <div className="my-3">
           {/* Product Rating */}
           <div className="flex flex-col md:flex-row space-x-1 md:space-x-0 space-y-0 md:space-y-2 md:items-center w-full justify-end">
             <ProductRating score={props.productRating} className="my-3" />
-            <h4 className="w-min text-center whitespace-nowrap">
-              {props.numberOfRatings} Ratings
-            </h4>
+            <h4 className="w-min text-center whitespace-nowrap">{props.numberOfRatings} Ratings</h4>
           </div>
 
           {/* Product Reviews */}
@@ -56,8 +52,12 @@ export function BuyProductSection(props: BuyProductSectionProps) {
         </div>
         {/*Purcahse buttons */}
         <div className="flex flex-col space-y-4">
-          <Button size={"lg"} className="bg-[--afre-green]">Add to cart </Button>
-          <Button size={"lg"} variant={"secondary"}>Buy It Now </Button>
+          <Button size={"lg"} className="bg-[--afre-green]">
+            Add to cart{" "}
+          </Button>
+          <Button size={"lg"} variant={"secondary"}>
+            Buy It Now{" "}
+          </Button>
           <Button size={"lg"}>
             <FaRegHeart /> &nbsp; Add to wishlist
           </Button>

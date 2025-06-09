@@ -10,12 +10,10 @@ const RefreshTokenHandler = (props: RefreshTokenHandlerProps) => {
   const { data: session } = useSession();
 
   useEffect(() => {
-    if (!!session) {
+    if (session) {
       // We did set the token to be ready to refresh after 23 hours, here we set interval of 23 hours 30 minutes.
       const timeRemaining = Math.round(
-        new Date((session as any).accessTokenExpireTime).getTime() -
-          4 * 60 * 1000 -
-          Date.now(),
+        new Date(session.expires).getTime() - 4 * 60 * 1000 - Date.now(),
       );
       props.setInterval(timeRemaining > 0 ? timeRemaining : 0);
     }

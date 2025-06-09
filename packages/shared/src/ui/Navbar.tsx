@@ -8,11 +8,7 @@ export function NavBar() {
           <div className="flex items-center">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <img
-                className="h-8 w-auto"
-                src="https://via.placeholder.com/150"
-                alt="Logo"
-              />
+              <img className="h-8 w-auto" src="https://via.placeholder.com/150" alt="Logo" />
             </div>
             {/* Mobile Menu Button */}
             <div className="block sm:hidden">
@@ -106,28 +102,16 @@ export function NavBar() {
       {/* Mobile Menu */}
       <div className="sm:hidden bg-gray-800">
         <div className="px-2 pt-2 pb-3 space-y-1">
-          <a
-            href="#"
-            className="text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
+          <a href="#" className="text-white block px-3 py-2 rounded-md text-base font-medium">
             Home
           </a>
-          <a
-            href="#"
-            className="text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
+          <a href="#" className="text-white block px-3 py-2 rounded-md text-base font-medium">
             Shop
           </a>
-          <a
-            href="#"
-            className="text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
+          <a href="#" className="text-white block px-3 py-2 rounded-md text-base font-medium">
             About
           </a>
-          <a
-            href="#"
-            className="text-white block px-3 py-2 rounded-md text-base font-medium"
-          >
+          <a href="#" className="text-white block px-3 py-2 rounded-md text-base font-medium">
             Contact
           </a>
         </div>

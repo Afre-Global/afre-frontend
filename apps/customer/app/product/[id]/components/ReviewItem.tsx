@@ -18,13 +18,11 @@ export function ReviewItem(props: ReviewItemProps) {
 
   const isContentLong = React.useMemo(() => {
     return props.content.length > contentLimit;
-  }, [props.content]);
+  }, [props.content, contentLimit]);
 
   const truncatedContent = React.useMemo(() => {
-    return isContentLong
-      ? props.content.slice(0, contentLimit) + "..."
-      : props.content;
-  }, [props.content, isContentLong]);
+    return isContentLong ? props.content.slice(0, contentLimit) + "..." : props.content;
+  }, [props.content, isContentLong, contentLimit]);
 
   const [showContent, setShowContent] = React.useState(false);
 
@@ -40,9 +38,7 @@ export function ReviewItem(props: ReviewItemProps) {
           <ProductRating score={4} className="text-xs md:text-sm space-x-1" />
           <div className="truncate">
             by{" "}
-            <span className="hover:underline cursor-pointer font-semibold ">
-              {props.username}
-            </span>
+            <span className="hover:underline cursor-pointer font-semibold ">{props.username}</span>
           </div>
           <div>{dateFmt.format(props.timestamp)}</div>
         </div>

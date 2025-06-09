@@ -2,25 +2,25 @@
 
 import type { Config } from "tailwindcss";
 import sharedConfig from "@repo/tailwind-config";
-import {getPackageDir} from "@repo/shared/utils/fs"
+import { getPackageDir } from "@repo/shared/utils/fs";
 
-const sharedPackageDir = getPackageDir().unwrap()
+const sharedPackageDir = getPackageDir().unwrap();
 
 const config: Pick<Config, "darkMode" | "content" | "presets" | "theme" | "plugins"> = {
-	darkMode: ["class"],
-	// darkMode: "class",
-	content: ["./app/**/*.tsx", "./app/**/index.ts", `${sharedPackageDir}/src/**/*.tsx`],
-	presets: [sharedConfig],
-	theme: {
-		container: {
-			center: true,
-			padding: "2rem",
-			screens: {
-				"2xl": "1400px",
-			},
-		},
-		extend: {
-			colors: {
+  darkMode: ["class"],
+  // darkMode: "class",
+  content: ["./app/**/*.tsx", "./app/**/index.ts", `${sharedPackageDir}/src/**/*.tsx`],
+  presets: [sharedConfig],
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
+    },
+    extend: {
+      colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -54,14 +54,14 @@ const config: Pick<Config, "darkMode" | "content" | "presets" | "theme" | "plugi
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-			},
-			borderRadius: {
-				lg: "var(--radius)",
-				md: "calc(var(--radius) - 2px)",
-				sm: "calc(var(--radius) - 4px)",
-			},
-		},
-	},
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+    },
+  },
 };
 
 export default config;

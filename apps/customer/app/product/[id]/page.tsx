@@ -1,7 +1,4 @@
-import {
-  BuyProductSection,
-  ReviewSection,
-} from "@/app/product/[id]/components";
+import { BuyProductSection, ReviewSection } from "@/app/product/[id]/components";
 import { NavBar } from "@repo/shared/ui";
 import { getProduct, getReviews } from "@/lib/requests/product";
 import React from "react";
