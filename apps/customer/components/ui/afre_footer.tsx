@@ -1,12 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  Leaf,
-  X,
-  Linkedin,
-  Instagram,
-} from "lucide-react";
+import { Leaf, X, Linkedin, Instagram } from "lucide-react";
 import { social_media } from "@/lib/list";
 
 export function AfreFooter() {
