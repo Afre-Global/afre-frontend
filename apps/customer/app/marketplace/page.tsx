@@ -6,6 +6,7 @@ import ComingSoonBanner from "@/app/marketplace/components/coming-soon-banner";
 import ProductFilters from "@/app/marketplace/components/product-filters";
 import type { Product } from "@/app/marketplace/components/product-card";
 import ProductGrid from "@/app/marketplace/components/product-grid";
+import { AfreFooter } from "@/components/ui/afre_footer";
 
 // Mock product data - in a real app, this would come from an API
 const mockProducts: Product[] = [
@@ -167,6 +168,7 @@ export default function Marketplace() {
           </div>
         </div>
       </div>
+      <AfreFooter />
     </div>
   );
 }
