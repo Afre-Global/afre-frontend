@@ -4,21 +4,8 @@ import { useState } from "react";
 import MarketplaceHeader from "@/app/marketplace/components/marketplace-header";
 import ComingSoonBanner from "@/app/marketplace/components/coming-soon-banner";
 import ProductFilters from "@/app/marketplace/components/product-filters";
-
-export interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  originalPrice?: number;
-  image: string;
-  category: "coffee" | "cocoa";
-  rating: number;
-  inStock: boolean;
-  origin: string;
-  weight: string;
-  tags: string[];
-}
+import type { Product } from "@/app/marketplace/components/product-card";
+import ProductGrid from "@/app/marketplace/components/product-grid";
 
 // Mock product data - in a real app, this would come from an API
 const mockProducts: Product[] = [
@@ -32,7 +19,7 @@ const mockProducts: Product[] = [
     image: "/placeholder.svg?height=300&width=300",
     category: "coffee",
     rating: 4.8,
-    inStock: true,
+    inStock: false,
     origin: "Nigeria",
     weight: "250g",
     tags: ["single origin", "arabica", "green coffee"],
@@ -46,7 +33,7 @@ const mockProducts: Product[] = [
     image: "/placeholder.svg?height=300&width=300",
     category: "cocoa",
     rating: 4.6,
-    inStock: true,
+    inStock: false,
     origin: "Nigeria",
     weight: "200g",
     tags: ["organic", "unsweetened", "baking"],
@@ -75,7 +62,7 @@ const mockProducts: Product[] = [
     image: "/placeholder.svg?height=300&width=300",
     category: "cocoa",
     rating: 4.5,
-    inStock: true,
+    inStock: false,
     origin: "Ecuador",
     weight: "150g",
     tags: ["raw", "unprocessed", "superfood"],
@@ -89,7 +76,7 @@ const mockProducts: Product[] = [
     image: "/placeholder.svg?height=300&width=300",
     category: "coffee",
     rating: 4.9,
-    inStock: true,
+    inStock: false,
     origin: "Nigeria",
     weight: "350g",
     tags: ["single origin", "dark roast", "ethical"],
@@ -103,7 +90,7 @@ const mockProducts: Product[] = [
     image: "/placeholder.svg?height=300&width=300",
     category: "cocoa",
     rating: 4.4,
-    inStock: true,
+    inStock: false,
     origin: "Ivory Coast",
     weight: "100g",
     tags: ["pure", "cosmetics", "confectionery"],
@@ -149,6 +136,7 @@ export default function Marketplace() {
       <MarketplaceHeader />
       <div className="container mx-auto px-4 py-8">
         <ComingSoonBanner />
+
         <div className="mt-8 grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-1">
             <ProductFilters
@@ -162,9 +150,22 @@ export default function Marketplace() {
               onSortChange={setSortOption}
             />
           </div>
-        </div>
 
-        <div className="lg:col-span-3"></div>
+          <div className="lg:col-span-3">
+            <ProductGrid products={sortedProducts} />
+
+            {/* Show message when no products match filters */}
+            {sortedProducts.length === 0 && (
+              <div className="bg-white rounded-lg p-8 text-center shadow-sm">
+                <h3 className="text-xl font-medium text-gray-900 mb-2">No products found</h3>
+                <p className="text-gray-600">
+                  Try adjusting your filters or check back soon as we add more products to our
+                  catalog.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
