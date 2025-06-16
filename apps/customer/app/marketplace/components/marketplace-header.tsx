@@ -3,13 +3,6 @@
 import { Search, ShoppingCart, Menu, Heart } from "lucide-react";
 import Link from "next/link";
 import { Input, Button } from "@repo/shared/ui";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
 import { useState } from "react";
 
 export default function MarketplaceHeader() {

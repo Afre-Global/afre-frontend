@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import MarketplaceHeader from "@/app/marketplace/components/marketplace-header";
 import ComingSoonBanner from "@/app/marketplace/components/coming-soon-banner";
 import ProductFilters from "@/app/marketplace/components/product-filters";
@@ -98,39 +98,38 @@ const mockProducts: Product[] = [
   },
 ];
 
+// Get unique origins for filter
+const origins = Array.from(new Set(mockProducts.map((product) => product.origin)));
+
+// Product counts for filter badges
+const productCounts = {
+  all: mockProducts.length,
+  coffee: mockProducts.filter((p) => p.category === "coffee").length,
+  cocoa: mockProducts.filter((p) => p.category === "cocoa").length,
+};
+
 export default function Marketplace() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [sortOption, setSortOption] = useState<string>("featured");
   const [originFilter, setOriginFilter] = useState<string[]>([]);
-
   // Filter products based on selected category and origin
-  const filteredProducts = mockProducts
-    .filter((product) => selectedCategory === "all" || product.category === selectedCategory)
-    .filter((product) => originFilter.length === 0 || originFilter.includes(product.origin));
-
-  // Sort products based on selected option
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    switch (sortOption) {
-      case "price-low":
-        return a.price - b.price;
-      case "price-high":
-        return b.price - a.price;
-      case "rating":
-        return b.rating - a.rating;
-      default:
-        return 0; // featured - maintain original order
-    }
-  });
-
-  // Get unique origins for filter
-  const origins = Array.from(new Set(mockProducts.map((product) => product.origin)));
-
-  // Product counts for filter badges
-  const productCounts = {
-    all: mockProducts.length,
-    coffee: mockProducts.filter((p) => p.category === "coffee").length,
-    cocoa: mockProducts.filter((p) => p.category === "cocoa").length,
-  };
+  const filteredProducts = useMemo(() => {
+    return mockProducts
+      .filter((product) => selectedCategory === "all" || product.category === selectedCategory)
+      .filter((product) => originFilter.length === 0 || originFilter.includes(product.origin))
+      .sort((a, b) => {
+        switch (sortOption) {
+          case "price-low":
+            return a.price - b.price;
+          case "price-high":
+            return b.price - a.price;
+          case "rating":
+            return b.rating - a.rating;
+          default:
+            return 0; // featured - maintain original order
+        }
+      });
+  }, [originFilter, selectedCategory, sortOption]);
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -153,10 +152,10 @@ export default function Marketplace() {
           </div>
 
           <div className="lg:col-span-3">
-            <ProductGrid products={sortedProducts} />
+            <ProductGrid products={filteredProducts} />
 
             {/* Show message when no products match filters */}
-            {sortedProducts.length === 0 && (
+            {filteredProducts.length === 0 && (
               <div className="bg-white rounded-lg p-8 text-center shadow-sm">
                 <h3 className="text-xl font-medium text-gray-900 mb-2">No products found</h3>
                 <p className="text-gray-600">

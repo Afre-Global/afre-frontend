@@ -2,10 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { Button, Badge, Card, CardContent, CardFooter } from "@repo/shared/ui";
 import { Star, ShoppingCart, Info, Heart } from "lucide-react";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
 export interface Product {
   id: string;

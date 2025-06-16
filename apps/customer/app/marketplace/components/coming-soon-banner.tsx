@@ -3,7 +3,7 @@
 import React from "react";
 import { Clock } from "lucide-react";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@repo/shared/ui";
 
 export default function ComingSoonBanner() {
   return (
