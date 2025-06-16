@@ -153,7 +153,7 @@ export default function ProductFilters({
             </AccordionContent>
           </AccordionItem>
 
-          <AccordionItem value="origins" onClick={(e) => e.stopPropagation()} j>
+          <AccordionItem value="origins" onClick={(e) => e.stopPropagation()}>
             <AccordionTrigger className="py-2">Origin</AccordionTrigger>
             <AccordionContent>
               <div className="space-y-2 pb-2">

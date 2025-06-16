@@ -9,7 +9,12 @@ const sharedPackageDir = getPackageDir().unwrap();
 const config: Pick<Config, "darkMode" | "content" | "presets" | "theme" | "plugins"> = {
   darkMode: ["class"],
   // darkMode: "class",
-  content: ["./app/**/*.tsx", "./app/**/index.ts", `${sharedPackageDir}/src/**/*.tsx`],
+  content: [
+    "./app/**/*.tsx",
+    "./app/**/index.ts",
+    `${sharedPackageDir}/src/**/*.tsx`,
+    "./components/**/*.tsx",
+  ],
   presets: [sharedConfig],
   theme: {
     container: {
