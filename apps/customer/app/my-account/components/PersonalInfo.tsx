@@ -23,6 +23,7 @@ import { SquarePen } from "lucide-react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRef, useState } from "react";
 
 export interface UserPersonalInfo {
   name: string;
@@ -41,6 +42,8 @@ const formSchema = z.object({
 });
 
 export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
+  const [isEditingDisabled, setIsEditingDisabled] = useState(true);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,11 +54,45 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
     mode: "onChange",
   });
 
+  const formRef = useRef<HTMLFormElement>(null);
+
   const watchedName = form.watch("name");
-  const watchedEmail = form.watch("email");
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    setIsEditingDisabled(true);
+  }
+
+  function handleEdit() {
+    console.log("edit");
+    setIsEditingDisabled(false);
+  }
+
+  function handleCancel() {
+    setIsEditingDisabled(true);
+  }
+
+  function displayCardActions() {
+    return isEditingDisabled ? (
+      <Button variant={"outline"} className={"gap-2"} size={"sm"} onClick={handleEdit}>
+        <SquarePen size="14px" />
+        Edit
+      </Button>
+    ) : (
+      <div className={"flex flex-row gap-1"}>
+        <Button
+          variant={"default"}
+          size={"sm"}
+          className={"gap-2"}
+          onClick={() => formRef.current?.requestSubmit()}
+        >
+          Save
+        </Button>
+        <Button variant={"outline"} size={"sm"} onClick={handleCancel}>
+          Cancel
+        </Button>
+      </div>
+    );
   }
 
   return (
@@ -64,17 +101,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
         <CardHeader>
           <CardTitle>Personal information</CardTitle>
           <CardDescription>Your Name, phone and email</CardDescription>
-          <CardAction>
-            <Button
-              variant={"outline"}
-              className={"gap-2"}
-              size={"sm"}
-              onClick={() => console.log("edit clicked")}
-            >
-              <SquarePen size="12px" />
-              Edit
-            </Button>
-          </CardAction>
+          <CardAction>{displayCardActions()}</CardAction>
         </CardHeader>
         <CardContent className="flex flex-col gap-6">
           <div className="flex items-center gap-4 ">
@@ -83,11 +110,11 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
             </Avatar>
             <div className="flex flex-col">
               <h3 className="text-lg font-medium text-gray-900">{watchedName}</h3>
-              <p className="text-sm text-gray-500">{watchedEmail}</p>
+              <p className="text-sm text-gray-500">{personalInfo.email}</p>
             </div>
           </div>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="">
+            <form ref={formRef} onSubmit={form.handleSubmit(onSubmit)} className="">
               <div className="w-full flex flex-row items-center gap-4">
                 <FormField
                   control={form.control}
@@ -96,7 +123,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
                     <FormItem className={"w-full max-w-full"}>
                       <FormLabel>Name</FormLabel>
                       <FormControl>
-                        <Input placeholder="john doe" {...field} />
+                        <Input disabled={isEditingDisabled} placeholder="john doe" {...field} />
                       </FormControl>
                       <div className="min-h-[20px]">
                         <FormMessage />
@@ -111,7 +138,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
                     <FormItem className={"w-full max-w-full"}>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="johndoe@mail.com" {...field} />
+                        <Input disabled placeholder="johndoe@mail.com" {...field} />
                       </FormControl>
                       <div className="min-h-[20px]">
                         <FormMessage />
@@ -128,7 +155,11 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
                     <FormItem className={"w-full max-w-full"}>
                       <FormLabel>Phone</FormLabel>
                       <FormControl>
-                        <Input placeholder="+234 8058493032" {...field} />
+                        <Input
+                          disabled={isEditingDisabled}
+                          placeholder="+234 8058493032"
+                          {...field}
+                        />
                       </FormControl>
                       <div className="min-h-[20px]">
                         <FormMessage />
