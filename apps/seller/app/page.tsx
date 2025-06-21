@@ -3,14 +3,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, Clock, ShoppingBag } from "lucide-react";
 import { useState } from "react";
+import { BUYER_PLATFORM_URL, BUYER_PLATFORM_URL_CONTACT, BACKEND_URL, SUBSCRIBE_URL  } from "@repo/shared/utils/env";
 
-const BUYER_PLATFORM_URL =
-  process.env.NEXT_PUBLIC_BUYER_PLATFORM_URL || "https://www.afreglobal.com/";
-const BUYER_PLATFORM_URL_CONTACT = BUYER_PLATFORM_URL + "/#contact";
-// const SELLER_PLATFORM_URL = process.env.NEXT_PUBLIC_SELLER_PLATFORM_URL || "https://afreglobalseller.com/"
-
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://127.0.0.1:8000";
-const SUBSCRIBE_URL = BACKEND_URL + "/landing_page/subscribe/";
 
 export default function Home() {
   const [email, setEmail] = useState<string>("");
@@ -37,6 +31,7 @@ export default function Home() {
     if (response.ok) {
       const data = await response.json();
       console.log("Success:", data);
+      alert("Thank you for subscribing! We'll keep you updated.");
     }
   }
 
