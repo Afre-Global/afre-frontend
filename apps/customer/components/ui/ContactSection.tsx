@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  X,
-  Linkedin,
-  Instagram,
-  Mail,
-} from "lucide-react";
+import { X, Linkedin, Instagram, Mail } from "lucide-react";
 import { social_media } from "@/lib/list";
 import { useState } from "react";
-
 
 export function ContactSection() {
   const [name, setName] = useState<string>("");
@@ -18,41 +12,38 @@ export function ContactSection() {
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
-  }
+  };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
-  }
+  };
 
   const handleSubjectChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSubject(e.target.value);
-  }
+  };
 
   const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
-  }
+  };
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+    e.preventDefault();
 
-    const apiUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL || "http://127.0.0.1:8000"
+    const apiUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL || "http://127.0.0.1:8000";
     const apiInquiryUrl: string = `${apiUrl}/landing_page/inquiry/`;
-    const response = await fetch(
-      apiInquiryUrl,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          subject,
-          message,
-        }),
-      }
-    )
+    const response = await fetch(apiInquiryUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        subject,
+        message,
+      }),
+    });
 
     setName("");
     setEmail("");
