@@ -1,3 +1,22 @@
+# Getting started
+
+If you don't already have pnpm installed, run:
+
+```sh
+npm install -g pnpm
+```
+if you don't have npm installed, lookup how to install npm
+
+to install all dependencies, run: 
+```sh 
+pnpm i
+``` 
+
+and to run all the apps
+```sh
+pnpm dev
+```
+
 # Turborepo starter
 
 This Turborepo starter is maintained by the Turborepo core team.
