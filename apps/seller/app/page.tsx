@@ -3,8 +3,12 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, Clock, ShoppingBag } from "lucide-react";
 import { useState } from "react";
-import { BUYER_PLATFORM_URL, BUYER_PLATFORM_URL_CONTACT, BACKEND_URL, SUBSCRIBE_URL  } from "@repo/shared/utils/env";
-
+import {
+  BUYER_PLATFORM_URL,
+  BUYER_PLATFORM_URL_CONTACT,
+  BACKEND_URL,
+  SUBSCRIBE_URL,
+} from "@repo/shared/utils/env";
 
 export default function Home() {
   const [email, setEmail] = useState<string>("");
