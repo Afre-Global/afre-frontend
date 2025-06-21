@@ -33,7 +33,7 @@ export default function Home() {
       }),
     });
 
-    // setEmail("");
+    setEmail("");
     if (response.ok) {
       const data = await response.json();
       console.log("Success:", data);
