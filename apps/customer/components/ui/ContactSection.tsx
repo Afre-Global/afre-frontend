@@ -3,6 +3,7 @@
 import { X, Linkedin, Instagram, Mail } from "lucide-react";
 import { social_media } from "@/lib/list";
 import { useState } from "react";
+import { BACKEND_URL } from "@repo/shared/utils/env";
 
 export function ContactSection() {
   const [name, setName] = useState<string>("");
@@ -29,8 +30,7 @@ export function ContactSection() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const apiUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL || "http://127.0.0.1:8000";
-    const apiInquiryUrl: string = `${apiUrl}/landing_page/inquiry/`;
+    const apiInquiryUrl: string = `${BACKEND_URL}/landing_page/inquiry/`;
     const response = await fetch(apiInquiryUrl, {
       method: "POST",
       headers: {
@@ -54,6 +54,7 @@ export function ContactSection() {
       const errorText = await response.text();
       throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
     }
+    alert("Your message has been sent successfully!");
   }
 
   return (
