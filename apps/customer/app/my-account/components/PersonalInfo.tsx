@@ -36,8 +36,8 @@ interface PersonalInfoProps {
 
 const formSchema = z.object({
   name: z.string().min(2).max(100),
-  email: z.string().email(),
-  phone: z.string().regex(/^\+?[\d\s\-().]{7,}$/),
+  email: z.string().email("should be a valid email address"),
+  phone: z.string().regex(/^\+?[\d\s\-().]{7,}$/, "should be a valid phone number"),
 });
 
 export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
@@ -48,7 +48,7 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
       email: personalInfo.email,
       phone: personalInfo.phone,
     },
-    mode: "onBlur",
+    mode: "onChange",
   });
 
   const watchedName = form.watch("name");
