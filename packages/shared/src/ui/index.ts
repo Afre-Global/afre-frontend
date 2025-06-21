@@ -11,3 +11,4 @@ export * from "./sheet";
 export * from "./accordion";
 export * from "./radio-group";
 export * from "./checkbox";
+export * from "./avatar";
