@@ -59,12 +59,10 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
   const watchedName = form.watch("name");
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     setIsEditingDisabled(true);
   }
 
   function handleEdit() {
-    console.log("edit");
     setIsEditingDisabled(false);
   }
 
@@ -170,7 +168,6 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
                 {/*empty div so that the phone field aligns properly with the name field*/}
                 <div className="grid w-full max-w-full items-center gap-3"></div>
               </div>
-              {/*<Button type="submit">Submit</Button>*/}
             </form>
           </Form>
         </CardContent>
