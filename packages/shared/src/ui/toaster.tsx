@@ -1,33 +1,22 @@
 "use client";
-
-import {
-  Toast,
-  ToastClose,
-  ToastDescription,
-  ToastProvider,
-  ToastTitle,
-  ToastViewport,
-} from "./toast";
-import { useToast } from "../hooks/use-toast";
-
-export function Toaster() {
-  const { toasts } = useToast();
-
+import { useTheme } from "next-themes";
+import { Toaster as Sonner, ToasterProps } from "sonner";
+import { toast } from "sonner";
+const Toaster = ({ ...props }: ToasterProps) => {
+  const { theme = "system" } = useTheme();
   return (
-    <ToastProvider>
-      {toasts.map(function ({ id, title, description, action, ...props }) {
-        return (
-          <Toast key={id} {...props}>
-            <div className="grid gap-1">
-              {title && <ToastTitle>{title}</ToastTitle>}
-              {description && <ToastDescription>{description}</ToastDescription>}
-            </div>
-            {action}
-            <ToastClose />
-          </Toast>
-        );
-      })}
-      <ToastViewport />
-    </ToastProvider>
+    <Sonner
+      theme={theme as ToasterProps["theme"]}
+      className="toaster group bg-white"
+      style={
+        {
+          "--normal-bg": "var(--popover)",
+          "--normal-text": "var(--popover-foreground)",
+          "--normal-border": "var(--border)",
+        } as React.CSSProperties
+      }
+      {...props}
+    />
   );
-}
+};
+export { Toaster, toast };
