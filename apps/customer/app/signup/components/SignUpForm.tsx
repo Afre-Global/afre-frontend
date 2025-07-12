@@ -7,10 +7,13 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  toast,
 } from "@repo/shared/ui";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { SignUpFormValSchema } from "@/lib/validation/forms";
+import { useAuth } from "@repo/shared/hooks";
+import React from "react";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 type SignUpFormProps = {};
@@ -18,11 +21,22 @@ type SignUpFormProps = {};
 export function SignUpForm(_: SignUpFormProps) {
   const signUpForm = useForm<SignUpFormValSchema>({
     resolver: zodResolver(SignUpFormValSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
   });
+  const { signUpUser } = useAuth();
+  const [isLoading, setLoading] = React.useState(false);
 
-  const onSubmitForm: SubmitHandler<SignUpFormValSchema> = (data) => {
-    // TODO: make login request with login information
-    alert("hello");
+  const onSubmitForm: SubmitHandler<SignUpFormValSchema> = async (data) => {
+    setLoading(true);
+    const result = await signUpUser({ email: data.email, password: data.password });
+    if (result.isErr()) {
+      toast(result.getError()?.message, { position: "top-center" });
+    }
+    setLoading(false);
   };
 
   return (
@@ -38,36 +52,6 @@ export function SignUpForm(_: SignUpFormProps) {
                 <FormLabel>Email</FormLabel>
                 <FormControl>
                   <Input placeholder="Email" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* First Name */}
-          <FormField
-            control={signUpForm.control}
-            name="firstName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>First Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="First Name" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Last Name */}
-          <FormField
-            control={signUpForm.control}
-            name="lastName"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Last Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="Last Name" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -111,8 +95,12 @@ export function SignUpForm(_: SignUpFormProps) {
         </div>
 
         <div className="space-y-4">
-          <button type="submit" className="w-full py-3 px-5 bg-green-700 text-white rounded-lg">
-            Sign Up
+          <button
+            disabled={isLoading}
+            type="submit"
+            className="w-full py-3 px-5 bg-green-700 text-white rounded-lg"
+          >
+            {isLoading ? "Loading..." : "Sign Up"}
           </button>
           <p className="text-sm w-full text-center">
             Already have an account?{" "}

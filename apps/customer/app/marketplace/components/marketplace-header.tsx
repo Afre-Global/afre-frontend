@@ -4,9 +4,12 @@ import { Search, ShoppingCart, Menu, Heart } from "lucide-react";
 import Link from "next/link";
 import { Input, Button } from "@repo/shared/ui";
 import { useState } from "react";
+import { useAuth } from "@repo/shared/hooks";
 
 export default function MarketplaceHeader() {
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const { user } = useAuth();
+  console.log(user);
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 justify-between items-center">
@@ -56,14 +59,20 @@ export default function MarketplaceHeader() {
           </Link>
 
           {/* User Menu */}
-          <Button
-            onClick={() => setShowAuthModal(true)}
-            variant="outline"
-            size="sm"
-            disabled={true}
-          >
-            Sign In
-          </Button>
+          {user && user.isLoggedIn ? (
+            <Button onClick={() => user.signOut?.()} variant="outline" size="sm">
+              Sign Out
+            </Button>
+          ) : (
+            <Button
+              onClick={() => setShowAuthModal(true)}
+              variant="outline"
+              size="sm"
+              disabled={true}
+            >
+              Sign In
+            </Button>
+          )}
 
           {/* Mobile Menu */}
           <Button variant="ghost" size="icon" className="md:hidden">

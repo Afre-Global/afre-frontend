@@ -9,21 +9,18 @@ import {
   FormLabel,
   FormMessage,
   Input,
+  toast,
 } from "@repo/shared/ui";
 import { LoginFormValSchema } from "@/lib/validation/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useToast } from "@repo/shared/hooks";
+import { useAuth } from "@repo/shared/hooks";
 
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 type LoginFormProps = {};
 /* eslint-enable @typescript-eslint/no-empty-object-type */
-
 export function LoginForm(_: LoginFormProps) {
-  const { toast } = useToast();
-  const router = useRouter();
+  const { signInWithEmailAndPassword } = useAuth();
   const [loading, setLoading] = React.useState(false);
   const loginForm = useForm<LoginFormValSchema>({
     resolver: zodResolver(LoginFormValSchema),
@@ -36,22 +33,9 @@ export function LoginForm(_: LoginFormProps) {
   const onSubmitForm: SubmitHandler<LoginFormValSchema> = async (data, event) => {
     event?.preventDefault();
     setLoading(true);
-    const loginResponse = await signIn("credentials", {
-      redirect: false,
-      email: data.email,
-      password: data.password,
-    });
-
-    if (!loginResponse) {
-      toast({
-        variant: "destructive",
-        title: "ERROR",
-        description: "An unexpected error occured please try again later.",
-      });
-    } else if (loginResponse.error) {
-      toast({ variant: "destructive", description: loginResponse.error });
-    } else {
-      router.push("/");
+    const result = await signInWithEmailAndPassword(data.email, data.password);
+    if (result.isErr()) {
+      toast.error(result.getError()?.message, { position: "top-center" });
     }
     setLoading(false);
   };
