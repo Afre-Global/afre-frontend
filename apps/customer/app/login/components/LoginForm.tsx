@@ -75,7 +75,7 @@ export function LoginForm(_: LoginFormProps) {
               )}
             />
 
-            <Link href={"/"} className="hover:underline text-xs">
+            <Link href={"/forgot-password"} className="hover:underline text-xs">
               Forgot Password?
             </Link>
           </div>
