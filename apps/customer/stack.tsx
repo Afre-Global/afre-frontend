@@ -11,7 +11,8 @@ export const stackServerApp = new StackServerApp({
     afterSignUp: "/login",
     home: "/marketplace",
     afterSignOut: "/",
-    passwordReset: "/password-reset",
+    passwordReset: "/reset-password",
     forgotPassword: "/forgot-password",
+    emailVerification: "/email-verification",
   },
 });

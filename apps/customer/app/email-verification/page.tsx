@@ -8,7 +8,7 @@ import { useState } from "react";
 const CODE_PARAM = "code";
 
 export default function EmailVerification() {
-  const { emailVerification } = useAuth();
+  const { emailVerification, user } = useAuth();
   const searchParams = useSearchParams();
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const onClick = async () => {

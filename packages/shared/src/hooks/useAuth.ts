@@ -133,7 +133,7 @@ export function useAuth({ needsToBeLoggedIn = false }: UseAuthParams = {}): UseA
 
   /**
    * Sends forgot password email to the user's email address.
-   * @param redirectUrl - url to navigate to after sending email (expected to be the reset password page)
+   * @param redirectUrl - url sent to the user's email to reset their password. Note if used but be an absolute PATH url (e.g https://our-domain.com/reset-password)
    */
   const sendForgotPasswordEmail = async (
     email: string,
