@@ -34,7 +34,7 @@ export function SignUpForm(_: SignUpFormProps) {
     setLoading(true);
     const result = await signUpUser({ email: data.email, password: data.password });
     if (result.isErr()) {
-      toast(result.getError()?.message, { position: "top-center" });
+      toast.error(result.getError()?.message, { position: "top-center" });
     }
     setLoading(false);
   };
