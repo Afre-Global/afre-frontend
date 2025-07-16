@@ -1,13 +1,8 @@
-"use client";
-
+import { z } from "zod";
 import {
-  Avatar,
-  AvatarFallback,
-  Button,
   Card,
   CardAction,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
   Form,
@@ -18,46 +13,47 @@ import {
   FormMessage,
   Input,
 } from "@repo/shared/ui";
-import { SquarePen } from "lucide-react";
-
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRef, useState } from "react";
 import EditButton from "./EditButton";
 
-export interface UserPersonalInfo {
-  name: string;
-  email: string;
-  phone: string;
+export interface Address {
+  street: string;
+  city: string;
+  state: string;
+  zip?: string;
+  country?: string;
 }
 
-interface PersonalInfoProps {
-  personalInfo: UserPersonalInfo;
+interface ShippingAddressProps {
+  address: Address;
 }
 
 const formSchema = z.object({
-  name: z.string().min(2).max(100),
-  email: z.string().email("should be a valid email address"),
-  phone: z.string().regex(/^\+?[\d\s\-().]{7,}$/, "should be a valid phone number"),
+  street: z.string().min(2).max(100),
+  city: z.string().min(2).max(100),
+  state: z.string().min(2).max(100),
+  zip: z.string().optional(),
+  country: z.string().optional(),
 });
 
-export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
+export default function ShippingAddress({ address }: ShippingAddressProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: personalInfo.name,
-      email: personalInfo.email,
-      phone: personalInfo.phone,
+      street: address.street,
+      city: address.city,
+      state: address.state,
+      zip: address.zip,
+      country: address.country,
     },
     mode: "onChange",
   });
 
   const formRef = useRef<HTMLFormElement>(null);
-
-  const watchedName = form.watch("name");
 
   function onSave() {
     formRef.current?.requestSubmit();
@@ -72,33 +68,39 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
     <>
       <Card>
         <CardHeader>
-          <CardTitle>Personal information</CardTitle>
-          <CardDescription>Your Name, phone and email</CardDescription>
+          <CardTitle>Shipping Address</CardTitle>
           <CardAction>
             <EditButton isEditing={isEditing} setIsEditing={setIsEditing} onSave={onSave} />
           </CardAction>
         </CardHeader>
-        <CardContent className="flex flex-col gap-6">
-          <div className="flex items-center gap-4 ">
-            <Avatar className="rounded-lg h-16 w-16">
-              <AvatarFallback></AvatarFallback>
-            </Avatar>
-            <div className="flex flex-col">
-              <h3 className="text-lg font-medium text-gray-900">{watchedName}</h3>
-              <p className="text-sm text-gray-500">{personalInfo.email}</p>
-            </div>
-          </div>
+
+        <CardContent>
           <Form {...form}>
             <form ref={formRef} onSubmit={form.handleSubmit(onSubmit)} className="">
+              <FormField
+                control={form.control}
+                name="street"
+                render={({ field }) => (
+                  <FormItem className={"w-full max-w-full"}>
+                    <FormLabel>Street</FormLabel>
+                    <FormControl>
+                      <Input disabled={!isEditing} placeholder="123 main str" {...field} />
+                    </FormControl>
+                    <div className="min-h-[20px]">
+                      <FormMessage />
+                    </div>
+                  </FormItem>
+                )}
+              />
               <div className="w-full flex flex-row items-center gap-4">
                 <FormField
                   control={form.control}
-                  name="name"
+                  name="city"
                   render={({ field }) => (
                     <FormItem className={"w-full max-w-full"}>
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel>City</FormLabel>
                       <FormControl>
-                        <Input disabled={!isEditing} placeholder="john doe" {...field} />
+                        <Input disabled={!isEditing} placeholder="New york city" {...field} />
                       </FormControl>
                       <div className="min-h-[20px]">
                         <FormMessage />
@@ -108,12 +110,12 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
                 />
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="state"
                   render={({ field }) => (
                     <FormItem className={"w-full max-w-full"}>
-                      <FormLabel>Email</FormLabel>
+                      <FormLabel>State</FormLabel>
                       <FormControl>
-                        <Input disabled placeholder="johndoe@mail.com" {...field} />
+                        <Input disabled={!isEditing} placeholder="NY" {...field} />
                       </FormControl>
                       <div className="min-h-[20px]">
                         <FormMessage />
@@ -125,12 +127,12 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
               <div className="w-full flex flex-row items-center gap-4">
                 <FormField
                   control={form.control}
-                  name="phone"
+                  name="zip"
                   render={({ field }) => (
                     <FormItem className={"w-full max-w-full"}>
-                      <FormLabel>Phone</FormLabel>
+                      <FormLabel>ZIP code</FormLabel>
                       <FormControl>
-                        <Input disabled={!isEditing} placeholder="+234 8058493032" {...field} />
+                        <Input disabled={!isEditing} placeholder="123454" {...field} />
                       </FormControl>
                       <div className="min-h-[20px]">
                         <FormMessage />
@@ -138,8 +140,21 @@ export default function PersonalInfo({ personalInfo }: PersonalInfoProps) {
                     </FormItem>
                   )}
                 />
-                {/*empty div so that the phone field aligns properly with the name field*/}
-                <div className="w-full max-w-full"></div>
+                <FormField
+                  control={form.control}
+                  name="country"
+                  render={({ field }) => (
+                    <FormItem className={"w-full max-w-full"}>
+                      <FormLabel>Country</FormLabel>
+                      <FormControl>
+                        <Input disabled={!isEditing} placeholder="USA" {...field} />
+                      </FormControl>
+                      <div className="min-h-[20px]">
+                        <FormMessage />
+                      </div>
+                    </FormItem>
+                  )}
+                />
               </div>
             </form>
           </Form>
