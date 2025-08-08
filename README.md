@@ -131,3 +131,7 @@ pnpm run format
 Linting issues have to be addressed manually.
 
 Note: If you need to disable a linting/formatting rule please attach the reason to your pull request or inform the team before merging.
+
+## Working with Authentication
+
+For now only the buyer authentication works, so in order to add features around authentication or to launch the application please ask Dami or Anjola for environment variables that will be needed
