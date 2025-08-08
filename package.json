@@ -3,6 +3,8 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "build:sell": "turbo run build --filter=./apps/seller",
+    "build:cus": "turbo run build --filter=./apps/customer",
     "dev": "turbo run dev",
     "dev:sell": "turbo run dev --filter=./apps/seller",
     "dev:cus": "turbo run dev --filter=./apps/customer",
