@@ -5,6 +5,7 @@ import ShippingAddress, { Address } from "@/app/my-account/components/ShippingAd
 import NotificationPreferences, {
   UserNotificationPreferences,
 } from "@/app/my-account/components/NotificationPreferences";
+import ChangePassword from "@/app/my-account/components/ChangePassword";
 
 const personalInfo: UserPersonalInfo = {
   name: "john doe",
@@ -29,6 +30,7 @@ export default function MyAccountPage() {
       <PersonalInfo personalInfo={personalInfo} />
       <ShippingAddress address={shippingAddress} />
       <NotificationPreferences NotificationPreferences={notificationPreferences} />
+      <ChangePassword />
     </div>
   );
 }
