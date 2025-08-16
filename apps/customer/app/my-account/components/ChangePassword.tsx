@@ -28,7 +28,8 @@ const FormSchema = z
   .refine((data) => data.new_password === data.confirm_password, {
     message: "Passwords do not match",
     path: ["confirm_password"],
-  }).refine((data) => data.new_password !== data.current_password, {
+  })
+  .refine((data) => data.new_password !== data.current_password, {
     message: "New password cannot be the same as the current password",
     path: ["new_password"],
   });
