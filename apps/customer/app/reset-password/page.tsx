@@ -12,8 +12,7 @@ import {
   Input,
   toast,
 } from "@repo/shared/ui";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
