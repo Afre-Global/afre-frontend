@@ -36,8 +36,8 @@ export default function ForgotPassword() {
       setIsLoading(false);
     }
 
+    setIsLoading(false);
     toast.success("Reset Password Link has been sent!", { position: "top-center" });
-    setIsLoading(true);
   };
 
   return (
