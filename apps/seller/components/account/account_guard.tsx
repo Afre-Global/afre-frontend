@@ -16,20 +16,20 @@ export function AccountGuard({ children }: AccountGuardProps) {
 
   useEffect(() => {
     if (!isLoading && (!user || !isSeller)) {
-      router.push("/account/login")
+      router.push("/account/login");
     }
-  }, [user, isSeller, isLoading, router])
+  }, [user, isSeller, isLoading, router]);
 
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-green-600"></div>
       </div>
-    )
+    );
   }
 
   if (!user || !isSeller) {
-    return null
+    return null;
   }
 
   return <>{children}</>;

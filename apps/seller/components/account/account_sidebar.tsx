@@ -50,8 +50,8 @@ export function AccountSidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const user = {
-        name: "John Doe",
-        email: "JohnDoe@gmail.com",
+    name: "John Doe",
+    email: "JohnDoe@gmail.com",
   };
   return (
     <>
@@ -123,7 +123,9 @@ export function AccountSidebar() {
                 <User className="h-4 w-4 text-gray-600" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">{user?.name || "User Name"}</p>
+                <p className="text-sm font-medium text-gray-900 truncate">
+                  {user?.name || "User Name"}
+                </p>
                 <p className="text-xs text-gray-500 truncate">{user?.email || "Email"}</p>
               </div>
             </div>
