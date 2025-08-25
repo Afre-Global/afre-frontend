@@ -5,15 +5,17 @@ import Link from "next/link";
 import { Input, Button } from "@repo/shared/ui";
 import { useState } from "react";
 import { useAuth } from "@repo/shared/hooks";
+import { useRouter } from "next/navigation";
+import { AppUrls } from "@/lib/constants/appurls";
 
 export default function MarketplaceHeader() {
-  const [showAuthModal, setShowAuthModal] = useState(false);
   const { user } = useAuth();
-  console.log(user);
+  const router = useRouter();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 justify-between items-center">
-        <Link href="/marketplace" className="flex items-center gap-2">
+        <Link href={AppUrls.marketplace} className="flex items-center gap-2">
           {/* <Leaf className="h-6 w-6 text-[#075b23]" /> */}
           <span className="text-xl font-bold text-[#075b23]">Marketplace by Afre</span>
         </Link>
@@ -33,7 +35,7 @@ export default function MarketplaceHeader() {
         {/* Right Actions */}
         <div className="flex items-center space-x-2">
           {/* Wishlist */}
-          <Link href="/marketplace">
+          <Link href={AppUrls.marketplace}>
             <Button variant="ghost" size="icon" className="relative" disabled={true}>
               <Heart className="h-5 w-5" />
               {/*}
@@ -46,7 +48,7 @@ export default function MarketplaceHeader() {
           </Link>
 
           {/* Shopping Cart */}
-          <Link href="/marketplace">
+          <Link href={AppUrls.marketplace}>
             <Button variant="ghost" size="icon" className="relative" disabled={true}>
               <ShoppingCart className="h-5 w-5" />
               {/*
@@ -65,7 +67,7 @@ export default function MarketplaceHeader() {
             </Button>
           ) : (
             <Button
-              onClick={() => setShowAuthModal(true)}
+              onClick={() => router.push(AppUrls.login)}
               variant="outline"
               size="sm"
               disabled={true}
