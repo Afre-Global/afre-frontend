@@ -18,6 +18,7 @@ type AppUser = {
   isLoggedIn: boolean;
   userType?: AppUserType;
   getUserType: () => Promise<AppUserType>;
+  deleteAccount: () => Promise<ErrorOr<undefined>>;
 };
 
 enum AppUserType {
@@ -204,6 +205,15 @@ export function useAuth({ needsToBeLoggedIn = false }: UseAuthParams = {}): UseA
       await Promise.resolve();
       this.userType = AppUserType.Customer;
       return this.userType;
+    },
+    async deleteAccount() {
+      try {
+        await stackUser?.delete();
+      } catch (e) {
+        console.error(`${UNEXPECTED_ERROR_MSG}: ${e}`);
+        return ErrorOr.err(UNEXPECTED_ERROR_MSG);
+      }
+      return ErrorOr.ok(undefined);
     },
   };
 

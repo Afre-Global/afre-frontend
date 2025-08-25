@@ -1,4 +1,5 @@
 "use client";
+import { AppUrls } from "@/lib/constants/appurls";
 import { ResetPasswordFormValSchema } from "@/lib/validation/forms/resetPassword";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@repo/shared/hooks";
@@ -15,8 +16,6 @@ import {
 import { useSearchParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-
-const LOGIN_URL = "/login";
 
 export default function ResetPassword() {
   const resetPasswordForm = useForm<ResetPasswordFormValSchema>({
@@ -46,12 +45,12 @@ export default function ResetPassword() {
       position: "top-center",
     });
     setLoading(false);
-    router.push(LOGIN_URL);
+    router.push(AppUrls.login);
   };
 
   return (
-    <div className="w-full min-h-screen flex">
-      <div>
+    <div className="w-full min-h-screen flex justify-center items-center p-8">
+      <div className="flex flex-col w-1/4">
         <Form {...resetPasswordForm}>
           <form
             className="w-full space-y-8"

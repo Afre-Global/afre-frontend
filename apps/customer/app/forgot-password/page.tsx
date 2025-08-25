@@ -42,7 +42,7 @@ export default function ForgotPassword() {
 
   return (
     <div className="w-full min-h-screen flex items-center px-10 ">
-      <div className="flex flex-col">
+      <div className="flex flex-col mx-auto">
         <h2 className="text-3xl mb-5">Forgot Password?</h2>
         <h4>Please input your email and an email will be sent to reset your password.</h4>
 

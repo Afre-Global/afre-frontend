@@ -14,6 +14,8 @@ import Link from "next/link";
 import { SignUpFormValSchema } from "@/lib/validation/forms";
 import { useAuth } from "@repo/shared/hooks";
 import React from "react";
+import { useRouter } from "next/navigation";
+import { AppUrls } from "@/lib/constants/appurls";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 type SignUpFormProps = {};
@@ -29,14 +31,20 @@ export function SignUpForm(_: SignUpFormProps) {
   });
   const { signUpUser } = useAuth();
   const [isLoading, setLoading] = React.useState(false);
+  const router = useRouter();
 
   const onSubmitForm: SubmitHandler<SignUpFormValSchema> = async (data) => {
     setLoading(true);
     const result = await signUpUser({ email: data.email, password: data.password });
     if (result.isErr()) {
       toast.error(result.getError()?.message, { position: "top-center" });
+    } else {
+      toast.success("Sign up successful. Please check your email for verification", {
+        position: "top-center",
+      });
     }
     setLoading(false);
+    router.push(AppUrls.login);
   };
 
   return (
