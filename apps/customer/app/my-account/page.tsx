@@ -5,8 +5,7 @@ import ShippingAddress, { Address } from "@/app/my-account/components/ShippingAd
 import NotificationPreferences, {
   UserNotificationPreferences,
 } from "@/app/my-account/components/NotificationPreferences";
-import Orders from "./components/Order";
-import { Order, OrderItem } from "./components/Order";
+import Orders, { Order, OrderItem } from "./components/Order";
 const personalInfo: UserPersonalInfo = {
   name: "john doe",
   email: "johndoe@gmail.com",
