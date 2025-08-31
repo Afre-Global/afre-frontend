@@ -30,14 +30,14 @@ const navigation = [
     icon: Package,
   },
   {
+    name: "Future Products",
+    href: "/account/future_products",
+    icon: Package,
+  },
+  {
     name: "Orders",
     href: "/account/orders",
     icon: ShoppingCart,
-  },
-  {
-    name: "Customers",
-    href: "/account/customers",
-    icon: Users,
   },
   {
     name: "Settings",
