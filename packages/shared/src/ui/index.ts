@@ -13,3 +13,4 @@ export * from "./radio-group";
 export * from "./checkbox";
 export * from "./avatar";
 export * from "./Toaster";
+export * from "./Switch";
