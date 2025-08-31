@@ -67,7 +67,7 @@ export function ProductFormModal({ isOpen, onClose, onSubmit, product }: Product
         origin: product.origin,
         weight: product.weight,
         tags: [...product.tags],
-      })
+      });
     } else {
       setFormData({
         name: "",
@@ -81,9 +81,9 @@ export function ProductFormModal({ isOpen, onClose, onSubmit, product }: Product
         origin: "",
         weight: "",
         tags: [],
-      })
+      });
     }
-  }, [product, isOpen])
+  }, [product, isOpen]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,21 +110,21 @@ export function ProductFormModal({ isOpen, onClose, onSubmit, product }: Product
       });
       setNewTag("");
     }
-  }
+  };
 
   const removeTag = (tagToRemove: string) => {
     setFormData({
       ...formData,
       tags: formData.tags.filter((tag) => tag !== tagToRemove),
     });
-  }
+  };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       e.preventDefault();
       addTag();
     }
-  }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
