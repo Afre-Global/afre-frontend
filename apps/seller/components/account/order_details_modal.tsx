@@ -1,17 +1,36 @@
-"use client"
+"use client";
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge, Button } from "@repo/shared/ui";
-import { Separator } from "@/components/ui/separator"
-import { Package, Truck, CheckCircle, XCircle, CreditCard, MapPin, Phone, Mail } from "lucide-react"
-import type { Order } from "@/lib/types"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  Badge,
+  Button,
+  Separator,
+} from "@repo/shared/ui";
+import {
+  Package,
+  Truck,
+  CheckCircle,
+  XCircle,
+  CreditCard,
+  MapPin,
+  Phone,
+  Mail,
+} from "lucide-react";
+import type { Order } from "@/lib/types";
 
 interface OrderDetailsModalProps {
-  isOpen: boolean
-  onClose: () => void
-  order: Order | null
-  onStatusUpdate: (orderId: string, status: Order["orderStatus"]) => void
+  isOpen: boolean;
+  onClose: () => void;
+  order: Order | null;
+  onStatusUpdate: (orderId: string, status: Order["orderStatus"]) => void;
 }
 
 const statusColors = {
@@ -21,7 +40,7 @@ const statusColors = {
   shipped: "bg-purple-100 text-purple-800",
   delivered: "bg-green-100 text-green-800",
   cancelled: "bg-red-100 text-red-800",
-}
+};
 
 const statusIcons = {
   pending: Package,
@@ -30,12 +49,17 @@ const statusIcons = {
   shipped: Truck,
   delivered: CheckCircle,
   cancelled: XCircle,
-}
+};
 
-export function OrderDetailsModal({ isOpen, onClose, order, onStatusUpdate }: OrderDetailsModalProps) {
-  if (!order) return null
+export function OrderDetailsModal({
+  isOpen,
+  onClose,
+  order,
+  onStatusUpdate,
+}: OrderDetailsModalProps) {
+  if (!order) return null;
 
-  const StatusIcon = statusIcons[order.orderStatus]
+  const StatusIcon = statusIcons[order.orderStatus];
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -98,7 +122,9 @@ export function OrderDetailsModal({ isOpen, onClose, order, onStatusUpdate }: Or
                     <div className="font-medium">
                       ${item.price.toFixed(2)} × {item.quantity}
                     </div>
-                    <div className="text-sm text-gray-600">${(item.price * item.quantity).toFixed(2)}</div>
+                    <div className="text-sm text-gray-600">
+                      ${(item.price * item.quantity).toFixed(2)}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -120,7 +146,8 @@ export function OrderDetailsModal({ isOpen, onClose, order, onStatusUpdate }: Or
                 </div>
                 <div>{order.shippingAddress.address}</div>
                 <div>
-                  {order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.zipCode}
+                  {order.shippingAddress.city}, {order.shippingAddress.state}{" "}
+                  {order.shippingAddress.zipCode}
                 </div>
                 <div>{order.shippingAddress.country}</div>
                 <div className="flex items-center gap-2 mt-3">
@@ -229,7 +256,9 @@ export function OrderDetailsModal({ isOpen, onClose, order, onStatusUpdate }: Or
               <Separator />
               <div>
                 <h3 className="text-lg font-semibold mb-2">Special Instructions</h3>
-                <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">{order.specialInstructions}</p>
+                <p className="text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                  {order.specialInstructions}
+                </p>
               </div>
             </>
           )}
@@ -255,5 +284,5 @@ export function OrderDetailsModal({ isOpen, onClose, order, onStatusUpdate }: Or
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

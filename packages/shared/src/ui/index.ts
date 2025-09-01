@@ -1,6 +1,6 @@
 export * from "./FormComponents";
 export * from "./Label";
-export * from "./Input";
+export * from "./input";
 export * from "./CarouselComponents";
 export * from "./Navbar";
 export * from "./SessionProvider";
@@ -14,3 +14,8 @@ export * from "./checkbox";
 export * from "./avatar";
 export * from "./Toaster";
 export * from "./Switch";
+export * from "./dialog";
+export * from "./textarea";
+export * from "./select";
+export * from "./chart";
+export * from "./separator";

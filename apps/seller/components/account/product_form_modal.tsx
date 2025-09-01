@@ -1,34 +1,25 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Badge, Button, Label } from "@repo/shared/ui";
-import { Switch } from "@/components/ui/switch";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
+  Input,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  Badge,
+  Button,
+  Label,
+  Switch,
+  Textarea,
+} from "@repo/shared/ui";
 import { X } from "lucide-react";
-
-export interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  originalPrice?: number;
-  image: string;
-  category: "coffee" | "cocoa";
-  rating: number;
-  inStock: boolean;
-  origin: string;
-  weight: string;
-  tags: string[];
-}
+import type { Product } from "@/lib/types";
 
 interface ProductFormModalProps {
   isOpen: boolean;

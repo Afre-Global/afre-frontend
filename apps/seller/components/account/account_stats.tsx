@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@repo/shared/ui";
 import { Package, ShoppingCart, Users, BarChart3, BarChart2 } from "lucide-react";
 
 export function AccountStats() {

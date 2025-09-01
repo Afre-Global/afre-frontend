@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/shared/ui";
 import { ArrowRight, CheckCircle2, Clock, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import {

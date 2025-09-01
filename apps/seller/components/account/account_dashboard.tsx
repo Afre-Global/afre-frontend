@@ -1,27 +1,23 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
-import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
 import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  Badge,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import {
-  DollarSign,
-  TrendingDown,
-  TrendingUp,
-  ArrowLeft,
-  Package,
-  ShoppingCart,
-  Users,
-  BarChart3,
-  BarChart2,
-} from "lucide-react";
-import { useState } from "react";
+} from "@repo/shared/ui";
+import { BarChart3 } from "lucide-react";
 import {
   Area,
   AreaChart,

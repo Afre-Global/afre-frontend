@@ -1,13 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import Image from "next/image";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Button, Input, Card, CardContent, CardHeader, CardTitle, Badge } from "@repo/shared/ui";
 import { Plus, Search, Edit, Trash2, Package } from "lucide-react";
-import { Product, ProductFormModal } from "./product_form_modal";
+import { ProductFormModal } from "./product_form_modal";
+import { Product } from "@/lib/types";
 
 // Mock product data - same as marketplace
 const mockProducts: Product[] = [

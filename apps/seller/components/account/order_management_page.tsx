@@ -1,17 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { Card, CardContent, Badge, Input, Button } from "@repo/shared/ui";
-import { Search, ShoppingCart, Eye, Package, Truck, CheckCircle, XCircle } from "lucide-react";
-import { OrderDetailsModal } from "./order_details_modal";
-import type { Order } from "@/lib/types";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+  Card,
+  CardContent,
+  Badge,
+  Input,
+  Button,
+} from "@repo/shared/ui";
+import { Search, ShoppingCart, Eye, Package, Truck, CheckCircle, XCircle } from "lucide-react";
+import { OrderDetailsModal } from "./order_details_modal";
+import type { Order } from "@/lib/types";
 
 const statusColors = {
   pending: "bg-yellow-100 text-yellow-800",
