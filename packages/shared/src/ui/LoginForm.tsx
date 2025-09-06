@@ -2,6 +2,7 @@
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
+  Button,
   Form,
   FormControl,
   FormField,
@@ -11,9 +12,9 @@ import {
   Input,
   toast,
 } from "@repo/shared/ui";
-import { LoginFormValSchema } from "@/lib/validation/forms";
-import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import { LoginFormValSchema } from "@repo/shared/validation/forms";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@repo/shared/hooks";
 
 /* eslint-disable @typescript-eslint/no-empty-object-type */
@@ -42,7 +43,13 @@ export function LoginForm(_: LoginFormProps) {
 
   return (
     <Form {...loginForm}>
-      <form className="w-full space-y-8" onSubmit={loginForm.handleSubmit(onSubmitForm)}>
+      <form className="flex flex-col gap-6" onSubmit={loginForm.handleSubmit(onSubmitForm)}>
+        <div className="flex flex-col items-center gap-2 text-center">
+          <h1 className="text-2xl font-bold">Login to your account</h1>
+          <p className="text-muted-foreground text-sm text-balance">
+            Enter your email below to login to your account
+          </p>
+        </div>
         <div className="space-y-4">
           {/* Email */}
           <FormField
@@ -75,22 +82,22 @@ export function LoginForm(_: LoginFormProps) {
               )}
             />
 
-            <Link href={"/forgot-password"} className="hover:underline text-xs">
+            <Link href={"auth/forgot-password"} className="hover:underline text-xs">
               Forgot Password?
             </Link>
           </div>
         </div>
         <div className="space-y-4">
-          <button
+          <Button
             type="submit"
             className="w-full py-3 px-5 bg-green-700 text-white rounded-lg"
             disabled={loading}
           >
             {loading ? "Loading..." : "Login"}
-          </button>
+          </Button>
           <p className="text-sm w-full text-center">
             Don&apos;t have an account?{" "}
-            <Link href={"/signup"} className="hover:underline text-sm">
+            <Link href={"/auth/signup"} className="hover:underline text-sm">
               Sign Up
             </Link>
           </p>

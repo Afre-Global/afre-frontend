@@ -5,14 +5,14 @@ import { StackServerApp } from "@stackframe/stack";
 export const stackServerApp = new StackServerApp({
   tokenStore: "nextjs-cookie",
   urls: {
-    signIn: "/login",
-    signUp: "/signup",
+    signIn: "auth/login",
+    signUp: "auth/signup",
     afterSignIn: "/marketplace",
-    afterSignUp: "/login",
+    afterSignUp: "auth/login",
     home: "/marketplace",
     afterSignOut: "/",
-    passwordReset: "/reset-password",
-    forgotPassword: "/forgot-password",
-    emailVerification: "/email-verification",
+    passwordReset: "auth/reset-password",
+    forgotPassword: "auth/forgot-password",
+    emailVerification: "auth/email-verification",
   },
 });
