@@ -1,8 +1,7 @@
 "use client";
 
-import { AppUrls } from "@/lib/constants/appurls";
+import { CustomerAppUrls } from "@repo/shared/utils/AppUrls";
 import { useAuth } from "@repo/shared/hooks";
-import { Button } from "@repo/shared/ui";
 import { useRouter } from "next/navigation";
 
 export default function VerficationWarning() {
@@ -10,7 +9,7 @@ export default function VerficationWarning() {
   const router = useRouter();
 
   if (user.isLoggedIn && user.isEmailVerified) {
-    router.push(AppUrls.marketplace);
+    router.push(CustomerAppUrls.marketplace);
   }
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { LoginForm } from "@repo/shared/ui";
+import { LoginForm } from "@repo/shared/validation/forms";
 
 /**
  * Login page for the application.

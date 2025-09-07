@@ -34,7 +34,9 @@ export default function EmailVerification() {
       ) : (
         <div className="flex flex-col justify-center space-y-10">
           <h3 className="text-center">Please click on the button to verify your account</h3>
-          <Button onClick={onClick}>Verify Email</Button>
+          <Button onClick={onClick} className="bg-green-700 hover:bg-[#075b23]">
+            Verify Email
+          </Button>
         </div>
       )}
     </div>

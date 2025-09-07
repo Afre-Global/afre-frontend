@@ -1,3 +1,5 @@
+"use client";
+
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
   Form,
@@ -11,16 +13,35 @@ import {
 } from "@repo/shared/ui";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { SignUpFormValSchema } from "@/lib/validation/forms";
 import { useAuth } from "@repo/shared/hooks";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { AppUrls } from "@/lib/constants/appurls";
+import { AppUrlsInterface } from "@repo/shared/utils/AppUrls";
+import { z } from "zod";
+
+export const SignUpFormValSchema = z
+  .object({
+    email: z.string().email("Please provide a valid email address"),
+    password: z.string().min(8),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
+export type SignUpFormValSchema = z.infer<typeof SignUpFormValSchema>;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 type SignUpFormProps = {};
 
-export function SignUpForm(_: SignUpFormProps) {
+interface SignUpFormCombinedProps {
+  app_urls: AppUrlsInterface;
+  _: SignUpFormProps;
+}
+
+// TODO: add AppUrls as argument
+export function SignUpForm({ app_urls, ...restOfProps }: SignUpFormCombinedProps) {
   const signUpForm = useForm<SignUpFormValSchema>({
     resolver: zodResolver(SignUpFormValSchema),
     defaultValues: {
@@ -44,12 +65,18 @@ export function SignUpForm(_: SignUpFormProps) {
       });
     }
     setLoading(false);
-    router.push(AppUrls.login);
+    router.push(app_urls.login);
   };
 
   return (
     <Form {...signUpForm}>
       <form className="w-full space-y-8" onSubmit={signUpForm.handleSubmit(onSubmitForm)}>
+        <div className="flex flex-col items-center gap-2 text-center">
+          <h1 className="text-2xl font-bold">Signup</h1>
+          <p className="text-muted-foreground text-sm text-balance">
+            Enter your email and password below to signup.
+          </p>
+        </div>
         <div className="space-y-4">
           {/* Email */}
           <FormField
@@ -67,46 +94,48 @@ export function SignUpForm(_: SignUpFormProps) {
           />
 
           {/* Password */}
-          <FormField
-            control={signUpForm.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input placeholder="password" {...field} className="w-full" type="password" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="space-y-4">
+            <FormField
+              control={signUpForm.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input placeholder="password" {...field} className="w-full" type="password" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-          {/* Confirm Password */}
-          <FormField
-            control={signUpForm.control}
-            name="confirmPassword"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Confirm Password</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="confirm password"
-                    {...field}
-                    className="w-full"
-                    type="password"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            {/* Confirm Password */}
+            <FormField
+              control={signUpForm.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirm Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="confirm password"
+                      {...field}
+                      className="w-full"
+                      type="password"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
         </div>
 
         <div className="space-y-4">
           <button
             disabled={isLoading}
             type="submit"
-            className="w-full py-3 px-5 bg-green-700 text-white rounded-lg"
+            className="w-full py-3 px-5 bg-green-700 text-white rounded-lg hover:bg-[#075b23]"
           >
             {isLoading ? "Loading..." : "Sign Up"}
           </button>

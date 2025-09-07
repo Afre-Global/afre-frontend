@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
@@ -13,9 +14,16 @@ import {
   toast,
 } from "@repo/shared/ui";
 import Link from "next/link";
-import { LoginFormValSchema } from "@repo/shared/validation/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@repo/shared/hooks";
+import { z } from "zod";
+
+export const LoginFormValSchema = z.object({
+  email: z.string().email("Please provide a valid email address"),
+  password: z.string(),
+});
+
+export type LoginFormValSchema = z.infer<typeof LoginFormValSchema>;
 
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 type LoginFormProps = {};
@@ -90,7 +98,7 @@ export function LoginForm(_: LoginFormProps) {
         <div className="space-y-4">
           <Button
             type="submit"
-            className="w-full py-3 px-5 bg-green-700 text-white rounded-lg"
+            className="w-full py-3 px-5 bg-green-700 text-white rounded-lg hover:bg-[#075b23]"
             disabled={loading}
           >
             {loading ? "Loading..." : "Login"}

@@ -3,10 +3,9 @@
 import { Search, ShoppingCart, Menu, Heart } from "lucide-react";
 import Link from "next/link";
 import { Input, Button } from "@repo/shared/ui";
-import { useState } from "react";
 import { useAuth } from "@repo/shared/hooks";
 import { useRouter } from "next/navigation";
-import { AppUrls } from "@/lib/constants/appurls";
+import { CustomerAppUrls } from "@repo/shared/utils/AppUrls";
 
 export default function MarketplaceHeader() {
   const { user } = useAuth();
@@ -15,7 +14,7 @@ export default function MarketplaceHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 justify-between items-center">
-        <Link href={AppUrls.marketplace} className="flex items-center gap-2">
+        <Link href={CustomerAppUrls.marketplace} className="flex items-center gap-2">
           {/* <Leaf className="h-6 w-6 text-[#075b23]" /> */}
           <span className="text-xl font-bold text-[#075b23]">Marketplace by Afre</span>
         </Link>
@@ -35,7 +34,7 @@ export default function MarketplaceHeader() {
         {/* Right Actions */}
         <div className="flex items-center space-x-2">
           {/* Wishlist */}
-          <Link href={AppUrls.marketplace}>
+          <Link href={CustomerAppUrls.marketplace}>
             <Button variant="ghost" size="icon" className="relative" disabled={true}>
               <Heart className="h-5 w-5" />
               {/*}
@@ -48,7 +47,7 @@ export default function MarketplaceHeader() {
           </Link>
 
           {/* Shopping Cart */}
-          <Link href={AppUrls.marketplace}>
+          <Link href={CustomerAppUrls.marketplace}>
             <Button variant="ghost" size="icon" className="relative" disabled={true}>
               <ShoppingCart className="h-5 w-5" />
               {/*
@@ -67,7 +66,7 @@ export default function MarketplaceHeader() {
             </Button>
           ) : (
             <Button
-              onClick={() => router.push(AppUrls.login)}
+              onClick={() => router.push(CustomerAppUrls.login)}
               variant="outline"
               size="sm"
               disabled={true}
