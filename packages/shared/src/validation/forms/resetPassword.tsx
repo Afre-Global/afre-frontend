@@ -4,6 +4,7 @@ import { CustomerAppUrls } from "@repo/shared/utils/AppUrls";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@repo/shared/hooks";
 import {
+  Button,
   Form,
   FormControl,
   FormField,
@@ -108,13 +109,13 @@ export function ResetPasswordForm() {
         </div>
 
         <div className="space-y-4">
-          <button
+          <Button
             disabled={isLoading}
             type="submit"
             className="w-full py-3 px-5 bg-green-700 text-white rounded-lg hover:bg-[#075b23]"
           >
             {isLoading ? "Loading..." : "Confirm"}
-          </button>
+          </Button>
         </div>
       </form>
     </Form>

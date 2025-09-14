@@ -2,6 +2,7 @@
 
 import { SubmitHandler, useForm } from "react-hook-form";
 import {
+  Button,
   Form,
   FormControl,
   FormField,
@@ -32,16 +33,11 @@ export const SignUpFormValSchema = z
 
 export type SignUpFormValSchema = z.infer<typeof SignUpFormValSchema>;
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-type SignUpFormProps = {};
-
 interface SignUpFormCombinedProps {
   app_urls: AppUrlsInterface;
-  _: SignUpFormProps;
 }
 
-// TODO: add AppUrls as argument
-export function SignUpForm({ app_urls, ...restOfProps }: SignUpFormCombinedProps) {
+export function SignUpForm({ app_urls }: SignUpFormCombinedProps) {
   const signUpForm = useForm<SignUpFormValSchema>({
     resolver: zodResolver(SignUpFormValSchema),
     defaultValues: {
@@ -63,9 +59,9 @@ export function SignUpForm({ app_urls, ...restOfProps }: SignUpFormCombinedProps
       toast.success("Sign up successful. Please check your email for verification", {
         position: "top-center",
       });
+      router.push(app_urls.login);
     }
     setLoading(false);
-    router.push(app_urls.login);
   };
 
   return (
@@ -132,16 +128,16 @@ export function SignUpForm({ app_urls, ...restOfProps }: SignUpFormCombinedProps
         </div>
 
         <div className="space-y-4">
-          <button
+          <Button
             disabled={isLoading}
             type="submit"
             className="w-full py-3 px-5 bg-green-700 text-white rounded-lg hover:bg-[#075b23]"
           >
             {isLoading ? "Loading..." : "Sign Up"}
-          </button>
+          </Button>
           <p className="text-sm w-full text-center">
             Already have an account?{" "}
-            <Link href={"/login"} className="hover:underline text-sm">
+            <Link href={app_urls.login} className="hover:underline text-sm">
               Log in
             </Link>
           </p>

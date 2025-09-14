@@ -10,5 +10,5 @@ import { CustomerAppUrls } from "@repo/shared/utils/AppUrls";
  *
  * */
 export default function SignUpPage() {
-  return <SignUpForm _={{}} app_urls={CustomerAppUrls} />;
+  return <SignUpForm app_urls={CustomerAppUrls} />;
 }

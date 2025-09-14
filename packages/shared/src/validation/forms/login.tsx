@@ -17,6 +17,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAuth } from "@repo/shared/hooks";
 import { z } from "zod";
+import { AppUrlsInterface } from "@repo/shared/utils/AppUrls";
 
 export const LoginFormValSchema = z.object({
   email: z.string().email("Please provide a valid email address"),
@@ -25,10 +26,11 @@ export const LoginFormValSchema = z.object({
 
 export type LoginFormValSchema = z.infer<typeof LoginFormValSchema>;
 
-/* eslint-disable @typescript-eslint/no-empty-object-type */
-type LoginFormProps = {};
-/* eslint-enable @typescript-eslint/no-empty-object-type */
-export function LoginForm() {
+interface LoginFormCombinedProps {
+  app_urls: AppUrlsInterface;
+}
+
+export function LoginForm({ app_urls }: LoginFormCombinedProps) {
   const { signInWithEmailAndPassword } = useAuth();
   const [loading, setLoading] = React.useState(false);
   const loginForm = useForm<LoginFormValSchema>({
@@ -90,7 +92,7 @@ export function LoginForm() {
               )}
             />
 
-            <Link href={"auth/forgot-password"} className="hover:underline text-xs">
+            <Link href={app_urls.forgotPassword} className="hover:underline text-xs">
               Forgot Password?
             </Link>
           </div>
@@ -105,7 +107,7 @@ export function LoginForm() {
           </Button>
           <p className="text-sm w-full text-center">
             Don&apos;t have an account?{" "}
-            <Link href={"/auth/signup"} className="hover:underline text-sm">
+            <Link href={app_urls.signup} className="hover:underline text-sm">
               Sign Up
             </Link>
           </p>

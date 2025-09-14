@@ -82,14 +82,13 @@ export default function Home() {
                 Our seller platform is launching soon. Join our waitlist to be the first to know
                 when we can connect you with customers globally and sell your exceptional products.
               </p>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button size="lg" className="bg-[#075b23] hover:bg-[#075b23]/90">
+              <div className="flex flex-col gap-2 min-[400px]:flex-row text-white">
+                <Button className="bg-[#075b23] hover:bg-[#075b23]/90">
                   <Link href="#subcribe">Join Waitlist</Link>
                 </Button>
                 <Link href={BUYER_PLATFORM_URL} target="_blank" rel="noopener noreferrer">
                   <Button
                     variant="outline"
-                    size="lg"
                     className="border-[#075b23] text-[#075b23] hover:bg-[#075b23] hover:text-white"
                   >
                     Visit Buyer Platform
@@ -179,7 +178,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row lg:justify-end">
               <Link href={BUYER_PLATFORM_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-[#075b23] hover:bg-[#075b23]/90">
+                <Button className="text-white bg-[#075b23] hover:bg-[#075b23]/90">
                   Shop Now
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -208,7 +207,7 @@ export default function Home() {
                   value={email}
                   onChange={handleEmailChange}
                 />
-                <Button type="submit" className="bg-[#075b23] hover:bg-[#075b23]/90">
+                <Button type="submit" className="text-white bg-[#075b23] hover:bg-[#075b23]/90">
                   Subscribe
                 </Button>
               </form>

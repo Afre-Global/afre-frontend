@@ -41,6 +41,7 @@ export function ForgotPasswordForm() {
     if (result.isErr()) {
       toast.error(result.getError()?.message, { position: "top-center" });
       setIsLoading(false);
+      return;
     }
 
     setIsLoading(false);
