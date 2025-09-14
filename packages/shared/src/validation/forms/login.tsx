@@ -28,7 +28,7 @@ export type LoginFormValSchema = z.infer<typeof LoginFormValSchema>;
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 type LoginFormProps = {};
 /* eslint-enable @typescript-eslint/no-empty-object-type */
-export function LoginForm(_: LoginFormProps) {
+export function LoginForm() {
   const { signInWithEmailAndPassword } = useAuth();
   const [loading, setLoading] = React.useState(false);
   const loginForm = useForm<LoginFormValSchema>({

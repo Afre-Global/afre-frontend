@@ -14,6 +14,7 @@ import {
 import { Plus, Search, Edit, Trash2, Package } from "lucide-react";
 import { FutureProductFormModal } from "./future_product_form_modal";
 import { FutureProduct } from "@/lib/types";
+import Image from "next/image";
 
 // Mock product data - same as marketplace
 const mockProducts: FutureProduct[] = [
@@ -223,7 +224,8 @@ export function FutureProductManagementPage() {
         {filteredProducts.map((product) => (
           <Card key={product.id} className="overflow-hidden">
             <div className="aspect-square relative">
-              <img
+              <Image
+                fill
                 src={product.image || "/placeholder.svg"}
                 alt={product.name}
                 className="object-cover w-full h-full"

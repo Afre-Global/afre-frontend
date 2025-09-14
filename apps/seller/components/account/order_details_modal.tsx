@@ -25,6 +25,7 @@ import {
   Mail,
 } from "lucide-react";
 import type { Order } from "@/lib/types";
+import Image from "next/image";
 
 interface OrderDetailsModalProps {
   isOpen: boolean;
@@ -104,7 +105,8 @@ export function OrderDetailsModal({
             <div className="space-y-4">
               {order.items.map((item) => (
                 <div key={item.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-                  <img
+                  <Image
+                    fill
                     src={item.image || "/placeholder.svg"}
                     alt={item.name}
                     className="w-16 h-16 object-cover rounded-md"
