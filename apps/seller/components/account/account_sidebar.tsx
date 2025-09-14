@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useUser } from "@stackframe/stack";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@repo/shared/ui";
@@ -48,10 +49,7 @@ const navigation = [
 export function AccountSidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const user = {
-    name: "John Doe",
-    email: "JohnDoe@gmail.com",
-  };
+  const user = useUser();
   return (
     <>
       {/* Mobile menu button */}
@@ -115,7 +113,7 @@ export function AccountSidebar() {
             })}
           </nav>
 
-          {/* User info and logout Section */}
+          {/* User info and signout Section */}
           <div className="p-4 border-f border-gray-200">
             <div className="flex items-center space-x-3 mb-3">
               <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
@@ -123,18 +121,19 @@ export function AccountSidebar() {
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">
-                  {user?.name || "User Name"}
+                  {user?.displayName || "User Name"}
                 </p>
-                <p className="text-xs text-gray-500 truncate">{user?.email || "Email"}</p>
+                <p className="text-xs text-gray-500 truncate">{user?.primaryEmail || "Email"}</p>
               </div>
             </div>
             <Button
+              onClick={() => user.signOut()}
               variant="outline"
               size="sm"
               className="w-full justify-start text-gray-600 hover:text-gray-900 bg-transparent"
             >
               <LogOut className="mr-2 h-4 w-4" />
-              Logout
+              Signout
             </Button>
           </div>
         </div>

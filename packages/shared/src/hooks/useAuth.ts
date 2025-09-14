@@ -2,7 +2,7 @@
 import { useStackApp, useUser } from "@stackframe/stack";
 import { ErrorOr } from "../utils/errors";
 
-const UNEXPECTED_ERROR_MSG = "An unexpected error occured. Please try again later.";
+const UNEXPECTED_ERROR_MSG = "An unexpected error occurred. Please try again later.";
 
 type CustomerSignUp = {
   email: string;
@@ -37,7 +37,7 @@ type UseAuth = {
   emailVerification: (code: string) => Promise<ErrorOr<undefined>>;
   sendForgotPasswordEmail: (email: string, redirectUrl?: string) => Promise<ErrorOr<undefined>>;
   resetPassword: (code: string, newPassword: string) => Promise<ErrorOr<undefined>>;
-  verifyPassowordResetCode: (code: string) => Promise<ErrorOr<undefined>>;
+  verifyPasswordResetCode: (code: string) => Promise<ErrorOr<undefined>>;
   user: AppUser;
 };
 
@@ -178,7 +178,7 @@ export function useAuth({ needsToBeLoggedIn = false }: UseAuthParams = {}): UseA
   /**
    * Verifies whether the password reset code inputed by the user is valid.
    */
-  const verifyPassowordResetCode = async (code: string): Promise<ErrorOr<undefined>> => {
+  const verifyPasswordResetCode = async (code: string): Promise<ErrorOr<undefined>> => {
     try {
       const result = await app.verifyPasswordResetCode(code);
       if (result.status == "error") {
@@ -223,7 +223,7 @@ export function useAuth({ needsToBeLoggedIn = false }: UseAuthParams = {}): UseA
     emailVerification,
     sendForgotPasswordEmail,
     resetPassword,
-    verifyPassowordResetCode,
+    verifyPasswordResetCode,
     user,
   };
 }

@@ -10,5 +10,5 @@ import { CustomerAppUrls } from "@repo/shared/utils/AppUrls";
  *
  * */
 export default function LoginPage() {
-  return <LoginForm app_urls={CustomerAppUrls}/>;
+  return <LoginForm app_urls={CustomerAppUrls} />;
 }

@@ -10,18 +10,18 @@ export interface AppUrlsInterface {
 
 export const CustomerAppUrls: AppUrlsInterface = {
   emailVerification: "auth/email-verification",
-  login: "auth/login",
+  login: "/auth/login",
   marketplace: "/marketplace",
-  signup: "auth/signup",
+  signup: "/auth/signup",
   myAccount: "/my-account",
   product: (id: string) => `/product/${id}`,
-  forgotPassword: "auth/forgot-password",
+  forgotPassword: "/auth/forgot-password",
 } as const;
 
 export const SellerAppUrls: AppUrlsInterface = {
-  emailVerification: "auth/email-verification",
-  login: "auth/login",
-  signup: "auth/signup",
+  emailVerification: "/auth/email-verification",
+  login: "/auth/login",
+  signup: "/auth/signup",
   myAccount: "/account",
-  forgotPassword: "auth/forgot-password",
+  forgotPassword: "/auth/forgot-password",
 } as const;
