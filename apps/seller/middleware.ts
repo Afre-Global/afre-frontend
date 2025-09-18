@@ -15,5 +15,9 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
 }
 
 export const config = {
-  matcher: [SellerAppUrls.login, SellerAppUrls.signup, SellerAppUrls.forgotPassword],
+  matcher: [
+    "/auth/login",
+    "/auth/signup",
+    "/auth/forgot-password"
+  ],
 };

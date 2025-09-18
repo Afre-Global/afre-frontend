@@ -1,5 +1,5 @@
 // import type React from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { StackProvider, StackTheme } from "@stackframe/stack";
 import { stackServerApp } from "../stack";
 import { Inter } from "next/font/google";
@@ -12,8 +12,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Afre for Sellers - Coming Soon",
   description: "Join our seller platform waitlist and be the first to know when we launch.",
-  themeColor: "#075b23",
 };
+
+export const viewport: Viewport = {
+  themeColor: "#075b23",
+}
 
 export default function RootLayout({
   children,

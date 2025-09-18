@@ -1,6 +1,7 @@
 "use client";
 
 import { ShoppingBag } from "lucide-react";
+import { SellerAppUrls } from "@repo/shared/utils/AppUrls";
 import Image from "next/image";
 
 import { SELLER_PLATFORM_URL } from "@repo/shared/utils/env";
@@ -10,7 +11,7 @@ export default function LoginPage({ children }: { children: React.ReactNode }) {
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
-          <a href={SELLER_PLATFORM_URL} className="flex items-center gap-2 font-medium">
+          <a href={SellerAppUrls.home} className="flex items-center gap-2 font-medium">
             <div className="flex items-center gap-2 font-bold text-xl">
               <ShoppingBag className="h-6 w-6 text-[#075b23]" />
             </div>
