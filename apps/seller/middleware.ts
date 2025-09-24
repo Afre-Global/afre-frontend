@@ -4,7 +4,7 @@ import { stackServerApp } from "./stack";
 
 export async function middleware(request: NextRequest): Promise<NextResponse> {
   const user = await stackServerApp.getUser();
-
+  // Check if onboarding is complete
   const protectedRoutes = [SellerAppUrls.login, SellerAppUrls.signup, SellerAppUrls.forgotPassword];
 
   if (user && protectedRoutes.includes(request.nextUrl.pathname)) {
@@ -15,9 +15,5 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
 }
 
 export const config = {
-  matcher: [
-    "/auth/login",
-    "/auth/signup",
-    "/auth/forgot-password"
-  ],
+  matcher: ["/auth/login", "/auth/signup", "/auth/forgot-password"],
 };

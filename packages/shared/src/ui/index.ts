@@ -19,3 +19,4 @@ export * from "./textarea";
 export * from "./select";
 export * from "./chart";
 export * from "./separator";
+export * from "./Progress";

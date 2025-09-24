@@ -68,32 +68,31 @@ export default function Home() {
               <Link href="#subscribe">Get Updates</Link>
             </Button>
             {user ? (
-            <Button
-              onClick={() => user.signOut()}
-              variant="outline"
-              size="sm"
-              className="border-[#075b23] text-[#075b23] hover:bg-[#075b23] hover:text-white"
-            >
-              Sign Out
-            </Button>
+              <Button
+                onClick={() => user.signOut()}
+                variant="outline"
+                size="sm"
+                className="border-[#075b23] text-[#075b23] hover:bg-[#075b23] hover:text-white"
+              >
+                Sign Out
+              </Button>
             ) : (
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-[#075b23] text-[#075b23] hover:bg-[#075b23] hover:text-white"
-            >
-              <Link href={SellerAppUrls.login}>Log In</Link>
-            </Button>
-            )
-            }
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-[#075b23] text-[#075b23] hover:bg-[#075b23] hover:text-white"
+              >
+                <Link href={SellerAppUrls.login}>Log In</Link>
+              </Button>
+            )}
             {!user && (
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-[#075b23] text-[#075b23] hover:bg-[#075b23] hover:text-white"
-            >
-              <Link href={SellerAppUrls.signup}>Sign Up</Link>
-            </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-[#075b23] text-[#075b23] hover:bg-[#075b23] hover:text-white"
+              >
+                <Link href={SellerAppUrls.signup}>Sign Up</Link>
+              </Button>
             )}
           </nav>
         </div>
