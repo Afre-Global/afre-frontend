@@ -64,7 +64,7 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
     streetNumber: "",
     streetAddress: "",
     city: "",
-    province_state: "",
+    provinceState: "",
     country: "",
     postalCode: "",
     // Products
@@ -102,7 +102,7 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
           Authorization: `Bearer ${access_token}`,
         },
       });
-      const response = await api.post(
+      const seller_response = await api.post(
         "/profiles/seller/",
         JSON.stringify({
           business_name: formData.businessName,
@@ -112,7 +112,33 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
           description_of_farm_business: formData.businessDescription,
         }),
       );
-      console.log(response);
+      console.log(seller_response);
+
+      const address_json = {
+          address_type: "BUSINESS",
+          street_number: formData.streetNumber,
+          street_address: formData.streetAddress,
+          appartment_unit: formData.appartmentNumber,
+          city: formData.city,
+          province_state: formData.provinceState,
+          postal_code: formData.postalCode,
+          country: formData.country
+        };
+      console.log(address_json);
+      const address_response = await api.post(
+        "/profiles/addresses/",
+        JSON.stringify(address_json),
+      );
+      console.log(address_response);
+
+      const users_response = await api.patch(
+        "/profiles/users/",
+        JSON.stringify({
+          is_seller_onboarding_complete: true,
+        }),
+      );
+      console.log(users_response);
+
     } catch (error) {
       console.error("Fetch failed", error);
       return null;
@@ -275,7 +301,7 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                     <Input
                       id="appartmentNumber"
                       value={formData.appartmentNumber}
-                      onChange={(e) => updateFormData("farmLocation", e.target.value)}
+                      onChange={(e) => updateFormData("appartmentNumber", e.target.value)}
                       placeholder="01"
                     />
                   </div>
@@ -312,7 +338,7 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                     <Label htmlFor="provinceState">Province or State</Label>
                     <Input
                       id="provinceState"
-                      value={formData.province_state}
+                      value={formData.provinceState}
                       onChange={(e) => updateFormData("provinceState", e.target.value)}
                       placeholder="Province or State"
                     />
@@ -320,9 +346,9 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                   <div className="space-y-2">
                     <Label htmlFor="country">Country</Label>
                     <Select
-                      value={formData.origin}
+                      value={formData.country}
                       onValueChange={(value: CountryCode) =>
-                        setFormData({ ...formData, origin: value })
+                        setFormData({ ...formData, country: value })
                       }
                       required
                     >
@@ -343,7 +369,7 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                     <Input
                       id="postalCode"
                       value={formData.postalCode}
-                      onChange={(e) => updateFormData("country", e.target.value)}
+                      onChange={(e) => updateFormData("postalCode", e.target.value)}
                       placeholder="Postal Code"
                     />
                   </div>
@@ -505,7 +531,7 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
             )}
 
             {/* Navigation Buttons */}
-            {currentStep < 6 && (
+            {currentStep < 7 && (
               <div className="flex justify-between pt-6 border-t">
                 <Button
                   variant="outline"
@@ -516,7 +542,7 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                   <ArrowLeft className="w-4 h-4 text-afre" />
                   Previous
                 </Button>
-                <Button onClick={nextStep} className="flex items-center gap-2 bg-afre">
+                <Button onClick={nextStep} className="flex items-center gap-2 bg-afre" disabled={currentStep === 6}>
                   {currentStep === 5 ? "Complete Setup" : "Continue"}
                   <ArrowRight className="w-4 h-4" />
                 </Button>
