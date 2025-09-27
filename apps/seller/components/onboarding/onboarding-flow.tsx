@@ -93,6 +93,7 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
   };
 
   async function createSellerProfile() {
+    console.log(access_token);
     try {
       const api = axios.create({
         baseURL: BACKEND_URL,
@@ -115,20 +116,17 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
       console.log(seller_response);
 
       const address_json = {
-          address_type: "BUSINESS",
-          street_number: formData.streetNumber,
-          street_address: formData.streetAddress,
-          appartment_unit: formData.appartmentNumber,
-          city: formData.city,
-          province_state: formData.provinceState,
-          postal_code: formData.postalCode,
-          country: formData.country
-        };
+        address_type: "BUSINESS",
+        street_number: formData.streetNumber,
+        street_address: formData.streetAddress,
+        appartment_unit: formData.appartmentNumber,
+        city: formData.city,
+        province_state: formData.provinceState,
+        postal_code: formData.postalCode,
+        country: formData.country,
+      };
       console.log(address_json);
-      const address_response = await api.post(
-        "/profiles/addresses/",
-        JSON.stringify(address_json),
-      );
+      const address_response = await api.post("/profiles/addresses/", JSON.stringify(address_json));
       console.log(address_response);
 
       const users_response = await api.patch(
@@ -138,7 +136,6 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
         }),
       );
       console.log(users_response);
-
     } catch (error) {
       console.error("Fetch failed", error);
       return null;
@@ -542,7 +539,11 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                   <ArrowLeft className="w-4 h-4 text-afre" />
                   Previous
                 </Button>
-                <Button onClick={nextStep} className="flex items-center gap-2 bg-afre" disabled={currentStep === 6}>
+                <Button
+                  onClick={nextStep}
+                  className="flex items-center gap-2 bg-afre"
+                  disabled={currentStep === 6}
+                >
                   {currentStep === 5 ? "Complete Setup" : "Continue"}
                   <ArrowRight className="w-4 h-4" />
                 </Button>

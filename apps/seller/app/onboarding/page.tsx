@@ -1,13 +1,13 @@
-import { OnboardingFlow } from "@/components/account/onboarding-flow";
-import { stackServerApp } from "@/stack";
+// "use client"
+import { OnboardingFlow } from "@/components/onboarding/onboarding-flow";
+import { get_user_access_token } from "@/lib/api_utils";
 
 export default async function OnboardingPage() {
-  const user = await stackServerApp.getUser();
-  const token = await user.getAuthJson();
+  const access_token = await get_user_access_token();
 
   return (
     <div className="min-h-screen bg-green-100">
-      <OnboardingFlow access_token={token.accessToken} />
+      <OnboardingFlow access_token={access_token} />
     </div>
   );
 }
