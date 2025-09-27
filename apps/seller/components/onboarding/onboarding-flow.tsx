@@ -13,6 +13,7 @@ import {
   ArrowLeft,
   ArrowRight,
   Upload,
+  AlertCircle,
 } from "lucide-react";
 import { BACKEND_URL } from "@repo/shared/utils/env";
 import { CountryCode } from "@/lib/types";
@@ -51,6 +52,7 @@ interface OnboardingFlowCombinedProps {
 
 export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
   const [currentStep, setCurrentStep] = useState(1);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const router = useRouter();
   const [formData, setFormData] = useState({
     // Basic Info
@@ -76,19 +78,68 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
   });
   const progress = (currentStep / steps.length) * 100;
 
-  const updateFormData = (field: string, value: any) => {
+  const updateFormData = (field: string, value: string | boolean | number | string[]) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) {
+      setErrors((prev) => ({ ...prev, [field]: "" }));
+    }
   };
 
   const nextStep = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (currentStep == 2) {
+      if (!formData.firstName.trim()) {
+        newErrors.firstName = "Please enter your first name to continue";
+      }
+      if (!formData.lastName.trim()) {
+        newErrors.lastName = "Please enter your last name to continue";
+      }
+      if (!formData.phone.trim()) {
+        newErrors.phone = "Please enter your phone number to continue";
+      }
+    }
+
+    if (currentStep == 3) {
+      if (!formData.businessName.trim()) {
+        newErrors.businessName = "Please enter your business name to continue";
+      }
+      if (!formData.businessDescription.trim()) {
+        newErrors.businessDescription = "Please enter your business description to continue";
+      }
+      if (!formData.streetNumber.trim()) {
+        newErrors.streetNumber = "Please enter your street number to continue";
+      }
+      if (!formData.streetAddress.trim()) {
+        newErrors.streetAddress = "Please enter your street address to continue";
+      }
+      if (!formData.city.trim()) {
+        newErrors.city = "Please enter your city to continue";
+      }
+      if (!formData.provinceState.trim()) {
+        newErrors.provinceState = "Please enter your province or state to continue";
+      }
+      if (!formData.country.trim()) {
+        newErrors.country = "Please enter your country to continue";
+      }
+      if (!formData.postalCode.trim()) {
+        newErrors.postalCode = "Please enter your postal code to continue";
+      }
+    }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
     if (currentStep < steps.length) {
       setCurrentStep(currentStep + 1);
+      setErrors({});
     }
   };
 
   const prevStep = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
+      setErrors({});
     }
   };
 
@@ -245,7 +296,15 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                       value={formData.firstName}
                       onChange={(e) => updateFormData("firstName", e.target.value)}
                       placeholder="Enter your first name"
+                      required
+                      className={errors.firstName ? "border-destructive" : ""}
                     />
+                    {errors.firstName && (
+                      <div className="flex items-center gap-2 text-sm text-destructive">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.firstName}
+                      </div>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="lastName">Last Name</Label>
@@ -254,7 +313,15 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                       value={formData.lastName}
                       onChange={(e) => updateFormData("lastName", e.target.value)}
                       placeholder="Enter your last name"
+                      required
+                      className={errors.lastName ? "border-destructive" : ""}
                     />
+                    {errors.lastName && (
+                      <div className="flex items-center gap-2 text-sm text-destructive">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.lastName}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -265,7 +332,15 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                     value={formData.phone}
                     onChange={(e) => updateFormData("phone", e.target.value)}
                     placeholder="+1 (555) 123-4567"
+                    required
+                    className={errors.phone ? "border-destructive" : ""}
                   />
+                  {errors.phone && (
+                    <div className="flex items-center gap-2 text-sm text-destructive">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.phone}
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -280,7 +355,15 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                     value={formData.businessName}
                     onChange={(e) => updateFormData("businessName", e.target.value)}
                     placeholder="Green Valley Farms"
+                    required
+                    className={errors.businessName ? "border-destructive" : ""}
                   />
+                  {errors.businessName && (
+                    <div className="flex items-center gap-2 text-sm text-destructive">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.businessName}
+                    </div>
+                  )}
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="businessDescription">Business Describe</Label>
@@ -290,7 +373,15 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                     onChange={(e) => updateFormData("businessDescription", e.target.value)}
                     placeholder="Describe you business and the products you are interested in selling"
                     rows={3}
+                    required
+                    className={errors.businessDescription ? "border-destructive" : ""}
                   />
+                  {errors.businessDescription && (
+                    <div className="flex items-center gap-2 text-sm text-destructive">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.businessDescription}
+                    </div>
+                  )}
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -309,7 +400,15 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                       value={formData.streetNumber}
                       onChange={(e) => updateFormData("streetNumber", e.target.value)}
                       placeholder="01"
+                      required
+                      className={errors.streetNumber ? "border-destructive" : ""}
                     />
+                    {errors.streetNumber && (
+                      <div className="flex items-center gap-2 text-sm text-destructive">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.streetNumber}
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -319,7 +418,15 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                     value={formData.streetAddress}
                     onChange={(e) => updateFormData("streetAddress", e.target.value)}
                     placeholder="Street Address"
+                    required
+                    className={errors.streetAddress ? "border-destructive" : ""}
                   />
+                  {errors.streetAddress && (
+                    <div className="flex items-center gap-2 text-sm text-destructive">
+                      <AlertCircle className="w-4 h-4" />
+                      {errors.streetAddress}
+                    </div>
+                  )}
                 </div>
                 <div className="grid md:grid-cols-4 gap-4">
                   <div className="space-y-2">
@@ -329,7 +436,15 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                       value={formData.city}
                       onChange={(e) => updateFormData("city", e.target.value)}
                       placeholder="City"
+                      required
+                      className={errors.city ? "border-destructive" : ""}
                     />
+                    {errors.city && (
+                      <div className="flex items-center gap-2 text-sm text-destructive">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.city}
+                      </div>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="provinceState">Province or State</Label>
@@ -338,7 +453,15 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                       value={formData.provinceState}
                       onChange={(e) => updateFormData("provinceState", e.target.value)}
                       placeholder="Province or State"
+                      required
+                      className={errors.provinceState ? "border-destructive" : ""}
                     />
+                    {errors.provinceState && (
+                      <div className="flex items-center gap-2 text-sm text-destructive">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.provinceState}
+                      </div>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="country">Country</Label>
@@ -349,7 +472,7 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                       }
                       required
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className={errors.postalCode ? "border-destructive" : ""}>
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -360,6 +483,12 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                         ))}
                       </SelectContent>
                     </Select>
+                    {errors.country && (
+                      <div className="flex items-center gap-2 text-sm text-destructive">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.country}
+                      </div>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="postalCode">Postal Code</Label>
@@ -368,7 +497,15 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
                       value={formData.postalCode}
                       onChange={(e) => updateFormData("postalCode", e.target.value)}
                       placeholder="Postal Code"
+                      required
+                      className={errors.postalCode ? "border-destructive" : ""}
                     />
+                    {errors.postalCode && (
+                      <div className="flex items-center gap-2 text-sm text-destructive">
+                        <AlertCircle className="w-4 h-4" />
+                        {errors.postalCode}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
