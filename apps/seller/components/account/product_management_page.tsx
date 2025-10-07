@@ -4,106 +4,129 @@ import { useState } from "react";
 import { Button, Input, Card, CardContent, CardHeader, CardTitle, Badge } from "@repo/shared/ui";
 import { Plus, Search, Edit, Trash2, Package } from "lucide-react";
 import { ProductFormModal } from "./product_form_modal";
-import { Product } from "@/lib/types";
+import { Product, Category, ListingType, UnitOfMeasure, CountryCode } from "@/lib/types";
+import { BACKEND_URL } from "@repo/shared/utils/env";
 import Image from "next/image";
+import axios from "axios";
 
 // Mock product data - same as marketplace
-const mockProducts: Product[] = [
-  {
-    id: "1",
-    name: "Ethiopian Single Origin Coffee Beans",
-    description:
-      "Premium Arabica beans from the highlands of Ethiopia with rich, complex flavor and floral notes.",
-    price: 24.99,
-    originalPrice: 29.99,
-    image: "/placeholder.svg?height=300&width=300",
-    category: "coffee",
-    rating: 4.8,
-    inStock: true,
-    origin: "Ethiopia",
-    weight: "250g",
-    tags: ["single origin", "arabica", "medium roast"],
-  },
-  {
-    id: "2",
-    name: "Organic Cocoa Powder",
-    description:
-      "Pure, unsweetened cocoa powder from sustainable farms. Perfect for baking and hot beverages.",
-    price: 18.5,
-    image: "/placeholder.svg?height=300&width=300",
-    category: "cocoa",
-    rating: 4.6,
-    inStock: true,
-    origin: "Ghana",
-    weight: "200g",
-    tags: ["organic", "unsweetened", "baking"],
-  },
-  {
-    id: "3",
-    name: "Colombian Coffee Blend",
-    description:
-      "Medium roast blend with balanced acidity and smooth finish. Ideal for daily brewing.",
-    price: 21.99,
-    originalPrice: 25.99,
-    image: "/placeholder.svg?height=300&width=300",
-    category: "coffee",
-    rating: 4.7,
-    inStock: false,
-    origin: "Colombia",
-    weight: "500g",
-    tags: ["blend", "medium roast", "balanced"],
-  },
-  {
-    id: "4",
-    name: "Raw Cacao Nibs",
-    description:
-      "Unprocessed cacao nibs with intense chocolate flavor. Rich in antioxidants and minerals.",
-    price: 16.75,
-    image: "/placeholder.svg?height=300&width=300",
-    category: "cocoa",
-    rating: 3.5,
-    inStock: true,
-    origin: "Ecuador",
-    weight: "150g",
-    tags: ["raw", "unprocessed", "superfood"],
-  },
-  {
-    id: "5",
-    name: "Fair Trade Coffee Beans",
-    description:
-      "Ethically sourced coffee beans supporting farming communities. Medium-dark roast with rich flavor.",
-    price: 26.99,
-    image: "/placeholder.svg?height=300&width=300",
-    category: "coffee",
-    rating: 4.9,
-    inStock: true,
-    origin: "Guatemala",
-    weight: "350g",
-    tags: ["fair trade", "medium-dark roast", "ethical"],
-  },
-  {
-    id: "6",
-    name: "Premium Cocoa Butter",
-    description:
-      "Pure cocoa butter extracted from finest cacao beans. Perfect for cosmetics and confections.",
-    price: 22.5,
-    image: "/placeholder.svg?height=300&width=300",
-    category: "cocoa",
-    rating: 4.4,
-    inStock: true,
-    origin: "Ivory Coast",
-    weight: "100g",
-    tags: ["pure", "cosmetics", "confectionery"],
-  },
-];
+const image = "/placeholder.svg?height=300&width=300";
+// const sellersProducts: DisplayProduct[] = [
+// {
+//   id: 1,
+//   name: "Ethiopian Single Origin Coffee Beans",
+//   description:
+//     "Premium Arabica beans from the highlands of Ethiopia with rich, complex flavour and floral notes.",
+//   unit_of_measure: UnitOfMeasure.Gram,
+//   // category: Category.Coffee,
+//   category: Object.entries(Category).find(([key, val]) => val === Category.Coffee)[0],
+//   minimum_bid_price_per_unit: 0,
+//   listing_type: ListingType.BUY_NOW,
+//   is_active: true,
+//   // origin: CountryCode.Ethiopia,
+//   origin: Object.entries(CountryCode).find(([key, val]) => val === CountryCode.Ethiopia)[0],
+//   discount: 0,
+//   size: 100,
+//   price_per_unit: 24.99,
+//   quantity_available: 50,
+// },
+// {
+//   id: 2,
+//   name: "Organic Cocoa Powder",
+//   description:
+//     "Pure, unsweetened cocoa powder from sustainable farms. Perfect for baking and hot beverages.",
+//   unit_of_measure: UnitOfMeasure.Gram,
+//   category: Category.Cocoa,
+//   minimum_bid_price_per_unit: 0,
+//   listing_type: ListingType.BUY_NOW,
+//   is_active: true,
+//   origin: CountryCode.Ghana,
+//   discount: 0,
+//   size: 200,
+//   price_per_unit: 18.5,
+//   quantity_available: 50,
+// },
+// {
+//   id: 3,
+//   name: "Colombian Coffee Blend",
+//   description:
+//     "Medium roast blend with balanced acidity and smooth finish. Ideal for daily brewing.",
+//   unit_of_measure: UnitOfMeasure.Gram,
+//   category: Category.Coffee,
+//   minimum_bid_price_per_unit: 0,
+//   listing_type: ListingType.BUY_NOW,
+//   is_active: true,
+//   origin: CountryCode.Colombia,
+//   discount: 5,
+//   size: 500,
+//   price_per_unit: 25.99,
+//   quantity_available: 40,
+// },
+// {
+//   id: 4,
+//   name: "Raw Cocao Nibs",
+//   description:
+//     "Unprocessed cacao nibs with intense chocolate flavor. Rich in antioxidants and minerals.",
+//   unit_of_measure: UnitOfMeasure.Gram,
+//   category: Category.Cocoa,
+//   minimum_bid_price_per_unit: 0,
+//   listing_type: ListingType.BUY_NOW,
+//   is_active: true,
+//   origin: CountryCode.Ecuador,
+//   discount: 0,
+//   size: 150,
+//   price_per_unit: 16.75,
+//   quantity_available: 40,
+// },
+// {
+//   id: 5,
+//   name: "Fair Trade Coffee Beans",
+//   description:
+//     "Ethically sourced coffee beans supporting farming communities. Medium-dark roast with rich flavor.",
+//   unit_of_measure: UnitOfMeasure.Gram,
+//   category: Category.Coffee,
+//   minimum_bid_price_per_unit: 0,
+//   listing_type: ListingType.BUY_NOW,
+//   is_active: true,
+//   origin: CountryCode.Guatemala,
+//   discount: 0,
+//   size: 350,
+//   price_per_unit: 26.99,
+//   quantity_available: 40,
+// },
+// {
+//   id: 6,
+//   name: "Premium Cocoa Butter",
+//   description:
+//     "Pure cocoa butter extracted from finest cacao beans. Perfect for cosmetics and confections.",
+//   unit_of_measure: UnitOfMeasure.Gram,
+//   category: Category.Cocoa,
+//   minimum_bid_price_per_unit: 0,
+//   listing_type: ListingType.BUY_NOW,
+//   is_active: true,
+//   origin: CountryCode.CoteDIvoire,
+//   discount: 0,
+//   size: 100,
+//   price_per_unit: 22.5,
+//   quantity_available: 40,
+// },
+// ];
 
-export function ProductManagementPage() {
-  const [products, setProducts] = useState<Product[]>(mockProducts);
+interface ProductManagementPageProps {
+  access_token: string;
+  sellersProducts: Product[];
+}
+
+export function ProductManagementPage({
+  access_token,
+  sellersProducts,
+}: ProductManagementPageProps) {
+  const [products, setProducts] = useState<Product[]>(sellersProducts);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
-  //
+
   // Filter products based on search and category
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
@@ -113,31 +136,126 @@ export function ProductManagementPage() {
     return matchesSearch && matchesCategory;
   });
 
-  const handleAddProduct = (productData: Omit<Product, "id">) => {
-    const newProduct: Product = {
-      ...productData,
-      id: Date.now().toString(),
+  async function handleAddProduct(productData: Omit<Product, "id">) {
+    const product_body = {
+      name: productData.name,
+      description: productData.description,
+      unit_of_measure: productData.unit_of_measure,
+      category: Category[productData.category],
+      minimum_bid_price_per_unit: productData.minimum_bid_price_per_unit,
+      listing_type: Object.entries(ListingType).find(
+        ([key, val]) => val === productData.listing_type,
+      )[0],
+      is_active: productData.is_active,
+      origin: CountryCode[productData.origin],
+      discount: productData.discount,
+      size: productData.size,
+      price_per_unit: productData.price_per_unit,
+      quantity_available: productData.quantity_available,
     };
-    setProducts([...products, newProduct]);
+    console.log(product_body);
+    try {
+      const api = axios.create({
+        baseURL: BACKEND_URL,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      const response = await api.post("/seller/products/", JSON.stringify(product_body));
+      console.log(response);
+      const newProduct: Product = {
+        id: response.data.id,
+        name: response.data.name,
+        description: response.data.description,
+        unit_of_measure: response.data.unit_of_measure,
+        category: Object.entries(Category).find(([key, val]) => val === response.data.category)[0],
+        minimum_bid_price_per_unit: response.data.minimum_bid_price_per_unit,
+        listing_type: response.data.listing_type,
+        is_active: response.data.is_active,
+        // origin: response.data.origin,
+        origin: Object.entries(CountryCode).find(([key, val]) => val === response.data.origin)[0],
+        discount: response.data.discount,
+        size: response.data.size,
+        price_per_unit: response.data.price_per_unit,
+        quantity_available: response.data.quantity_available,
+      };
+      alert("Your message has been sent successfully!");
+      console.log(newProduct);
+      setProducts([...products, newProduct]);
+    } catch (error) {
+      console.error("Fetch failed", error);
+      return null;
+    }
     setIsModalOpen(false);
-  };
+  }
 
-  const handleEditProduct = (productData: Omit<Product, "id">) => {
+  async function handleEditProduct(productData: Omit<Product, "id">) {
     if (!editingProduct) return;
+
+    try {
+      const product_body = {
+        name: productData.name,
+        description: productData.description,
+        unit_of_measure: productData.unit_of_measure,
+        category: Category[productData.category],
+        minimum_bid_price_per_unit: productData.minimum_bid_price_per_unit,
+        listing_type: Object.entries(ListingType).find(
+          ([key, val]) => val === productData.listing_type,
+        )[0],
+        is_active: productData.is_active,
+        origin: CountryCode[productData.origin],
+        discount: productData.discount,
+        size: productData.size,
+        price_per_unit: productData.price_per_unit,
+        quantity_available: productData.quantity_available,
+      };
+      const api = axios.create({
+        baseURL: BACKEND_URL,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+      const response = await api.put(
+        `/seller/products/${editingProduct.id}/`,
+        JSON.stringify(product_body),
+      );
+    } catch (error) {
+      console.error("Fetch failed", error);
+      return null;
+    }
 
     const updatedProducts = products.map((product) =>
       product.id === editingProduct.id ? { ...productData, id: editingProduct.id } : product,
     );
+
     setProducts(updatedProducts);
     setEditingProduct(null);
     setIsModalOpen(false);
-  };
+  }
 
-  const handleDeleteProduct = (productId: string) => {
+  async function handleDeleteProduct(productId: number) {
     if (confirm("Are you sure you want to delete this product?")) {
       setProducts(products.filter((product) => product.id !== productId));
+      try {
+        const api = axios.create({
+          baseURL: BACKEND_URL,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${access_token}`,
+          },
+        });
+        const response = await api.delete(`/seller/products/${productId}/`);
+      } catch (error) {
+        console.error("Fetch failed", error);
+        return null;
+      }
     }
-  };
+  }
 
   const openEditModal = (product: Product) => {
     setEditingProduct(product);
@@ -198,14 +316,14 @@ export function ProductManagementPage() {
             onClick={() => setSelectedCategory("coffee")}
             size="sm"
           >
-            Coffee ({products.filter((p) => p.category === "coffee").length})
+            Coffee ({products.filter((p) => p.category === Category.Coffee).length})
           </Button>
           <Button
             variant={selectedCategory === "cocoa" ? "default" : "outline"}
             onClick={() => setSelectedCategory("cocoa")}
             size="sm"
           >
-            Cocoa ({products.filter((p) => p.category === "cocoa").length})
+            Cocoa ({products.filter((p) => p.category === Category.Cocoa).length})
           </Button>
         </div>
       </div>
@@ -215,15 +333,10 @@ export function ProductManagementPage() {
         {filteredProducts.map((product) => (
           <Card key={product.id} className="overflow-hidden">
             <div className="aspect-square relative">
-              <Image
-                fill
-                src={product.image || "/placeholder.svg"}
-                alt={product.name}
-                className="object-cover w-full h-full"
-              />
+              <Image fill src={image} alt={product.name} className="object-cover w-full h-full" />
               <div className="absolute top-2 right-2 flex gap-1">
-                <Badge variant={product.inStock ? "default" : "secondary"}>
-                  {product.inStock ? "In Stock" : "Out of Stock"}
+                <Badge variant={product.quantity_available > 0 ? "default" : "secondary"}>
+                  {product.quantity_available > 0 ? "In Stock" : "Out of Stock"}
                 </Badge>
               </div>
             </div>
@@ -239,18 +352,22 @@ export function ProductManagementPage() {
               <p className="">{product.description}</p>
               <div className="flex justify-between items-center mb-3">
                 <div className="flex items-center gap-2">
-                  <span className="text-lg font-bold text-green-600">${product.price}</span>
-                  {product.originalPrice && (
+                  <span className="text-lg font-bold text-green-600">
+                    ${product.price_per_unit * (1 - product.discount / 100)}
+                  </span>
+                  {product.price_per_unit && (
                     <span className="text-sm text-gray-500 line-through">
-                      ${product.originalPrice}
+                      ${product.price_per_unit}
                     </span>
                   )}
                 </div>
-                <div className="">⭐ {product.rating}</div>
               </div>
               <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
                 <span>{product.origin}</span>
-                <span>{product.weight}</span>
+                <span>
+                  {product.size}
+                  {product.unit_of_measure}
+                </span>
               </div>
               <div className="flex gap-2">
                 <Button

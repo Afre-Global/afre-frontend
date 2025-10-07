@@ -144,7 +144,6 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
   };
 
   async function createSellerProfile() {
-    console.log(access_token);
     try {
       const api = axios.create({
         baseURL: BACKEND_URL,
@@ -164,7 +163,6 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
           description_of_farm_business: formData.businessDescription,
         }),
       );
-      console.log(seller_response);
 
       const address_json = {
         address_type: "BUSINESS",
@@ -176,7 +174,6 @@ export function OnboardingFlow({ access_token }: OnboardingFlowCombinedProps) {
         postal_code: formData.postalCode,
         country: formData.country,
       };
-      console.log(address_json);
       const address_response = await api.post("/profiles/addresses/", JSON.stringify(address_json));
       console.log(address_response);
 

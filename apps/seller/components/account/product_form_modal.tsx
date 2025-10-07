@@ -19,7 +19,7 @@ import {
   Textarea,
 } from "@repo/shared/ui";
 import { X } from "lucide-react";
-import type { Product } from "@/lib/types";
+import { Product, Category, ListingType, UnitOfMeasure, CountryCode } from "@/lib/types";
 
 interface ProductFormModalProps {
   isOpen: boolean;
@@ -32,90 +32,83 @@ export function ProductFormModal({ isOpen, onClose, onSubmit, product }: Product
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    price: "",
-    originalPrice: "",
+    unit_of_measure: UnitOfMeasure.Gram,
+    category: Object.keys(Category).find(
+      (key) => Category[key as keyof typeof Category] === Category.Cocoa,
+    ),
+    minimum_bid_price_per_unit: 0,
+    listing_type: ListingType.BUY_NOW,
+    is_active: true,
+    origin: Object.keys(CountryCode).find(
+      (key) => CountryCode[key as keyof typeof CountryCode] === CountryCode.Nigeria,
+    ),
+    price_per_unit: 0,
+    quantity_available: 0,
+    discount: 0,
+    size: 0,
     image: "",
-    category: "coffee" as "coffee" | "cocoa",
-    rating: "4.5",
-    inStock: true,
-    origin: "",
-    weight: "",
-    tags: [] as string[],
   });
-  const [newTag, setNewTag] = useState("");
 
   useEffect(() => {
     if (product) {
       setFormData({
         name: product.name,
         description: product.description,
-        price: product.price.toString(),
-        originalPrice: product.originalPrice?.toString() || "",
-        image: product.image,
+        unit_of_measure: product.unit_of_measure,
         category: product.category,
-        rating: product.rating.toString(),
-        inStock: product.inStock,
+        minimum_bid_price_per_unit: product.minimum_bid_price_per_unit,
+        listing_type: product.listing_type,
+        is_active: product.is_active,
         origin: product.origin,
-        weight: product.weight,
-        tags: [...product.tags],
+        price_per_unit: product.price_per_unit,
+        quantity_available: product.quantity_available,
+        discount: product.discount,
+        image: product.image,
+        size: product.size,
       });
     } else {
       setFormData({
         name: "",
         description: "",
-        price: "",
-        originalPrice: "",
+        unit_of_measure: UnitOfMeasure.Gram,
+        category: Object.keys(Category).find(
+          (key) => Category[key as keyof typeof Category] === Category.Cocoa,
+        ),
+        minimum_bid_price_per_unit: 0,
+        listing_type: ListingType.BUY_NOW,
+        is_active: false,
+        origin: Object.keys(CountryCode).find(
+          (key) => CountryCode[key as keyof typeof CountryCode] === CountryCode.Nigeria,
+        ),
+        price_per_unit: 0,
+        quantity_available: 0,
+        discount: 0,
+        size: 0,
         image: "/placeholder.svg?height=300&width=300",
-        category: "coffee",
-        rating: "4.5",
-        inStock: true,
-        origin: "",
-        weight: "",
-        tags: [],
       });
     }
   }, [product, isOpen]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const productData: Omit<Product, "id"> = {
       name: formData.name,
       description: formData.description,
-      price: Number.parseFloat(formData.price),
-      originalPrice: formData.originalPrice ? Number.parseFloat(formData.originalPrice) : undefined,
-      image: formData.image,
+      unit_of_measure: formData.unit_of_measure,
       category: formData.category,
-      rating: Number.parseFloat(formData.rating),
-      inStock: formData.inStock,
+      minimum_bid_price_per_unit: formData.minimum_bid_price_per_unit,
+      listing_type: formData.listing_type,
+      is_active: formData.is_active,
       origin: formData.origin,
-      weight: formData.weight,
-      tags: formData.tags,
+      price_per_unit: formData.price_per_unit,
+      quantity_available: formData.quantity_available,
+      discount: formData.discount,
+      image: formData.image,
+      size: formData.size,
     };
-  };
 
-  const addTag = () => {
-    if (newTag.trim() && !formData.tags.includes(newTag.trim())) {
-      setFormData({
-        ...formData,
-        tags: [...formData.tags, newTag.trim()],
-      });
-      setNewTag("");
-    }
-  };
-
-  const removeTag = (tagToRemove: string) => {
-    setFormData({
-      ...formData,
-      tags: formData.tags.filter((tag) => tag !== tagToRemove),
-    });
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      addTag();
-    }
-  };
+    onSubmit(productData);
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -125,31 +118,53 @@ export function ProductFormModal({ isOpen, onClose, onSubmit, product }: Product
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="name">Product Name</Label>
+            <Input
+              id="name"
+              type="text"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              required
+            />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-            <div className="space-y-2">
-              <Label htmlFor="name">Product Name</Label>
-              <Input
-                id="name"
-                type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
-              />
-            </div>
             <div className="space-y-2">
               <Label htmlFor="category">Category</Label>
               <Select
                 value={formData.category}
-                onValueChange={(value: "coffee" | "cocoa") =>
-                  setFormData({ ...formData, category: value })
+                onValueChange={(value: Category) => setFormData({ ...formData, category: value })}
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.keys(Category).map((category) => (
+                    <SelectItem key={category} value={category}>
+                      {category}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="category">Listing Type</Label>
+              <Select
+                value={formData.listing_type}
+                onValueChange={(value: ListingType) =>
+                  setFormData({ ...formData, listing_type: value })
                 }
               >
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="coffee">Coffee</SelectItem>
-                  <SelectItem value="cocoa">Cocoa</SelectItem>
+                  {Object.values(ListingType).map((listing_type) => (
+                    <SelectItem key={listing_type} value={listing_type}>
+                      {listing_type}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
             </div>
@@ -168,65 +183,114 @@ export function ProductFormModal({ isOpen, onClose, onSubmit, product }: Product
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="price">Price ($)</Label>
+              <Label htmlFor="price_per_unit">Price Per Unit ($)</Label>
               <Input
-                id="price"
+                id="price_per_unit"
                 type="number"
                 step="0.01"
-                value={formData.price}
-                onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                value={formData.price_per_unit}
+                onChange={(e) =>
+                  setFormData({ ...formData, price_per_unit: Number.parseFloat(e.target.value) })
+                }
                 required
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="originalPrice">Original Price ($)</Label>
+              <Label htmlFor="discount">Discount (%)</Label>
               <Input
-                id="originalPrice"
+                id="discount"
                 type="number"
                 step="0.01"
-                value={formData.originalPrice}
-                onChange={(e) => setFormData({ ...formData, originalPrice: e.target.value })}
+                value={formData.discount}
+                onChange={(e) =>
+                  setFormData({ ...formData, discount: Number.parseFloat(e.target.value) })
+                }
                 placeholder="Optional"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="rating">Rating</Label>
+              <Label htmlFor="size">Size</Label>
               <Input
-                id="rating"
+                id="size"
                 type="number"
-                step="0.1"
-                min="0"
-                max="5"
-                value={formData.rating}
-                onChange={(e) => setFormData({ ...formData, rating: e.target.value })}
+                step="0.01"
+                value={formData.size}
+                onChange={(e) =>
+                  setFormData({ ...formData, size: Number.parseFloat(e.target.value) })
+                }
+                required
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="unit_of_measure">Unit Of Measure</Label>
+              <Select
+                value={formData.unit_of_measure}
+                onValueChange={(value: UnitOfMeasure) =>
+                  setFormData({ ...formData, unit_of_measure: value })
+                }
+              >
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {Object.values(UnitOfMeasure).map((unit_of_measure) => (
+                    <SelectItem key={unit_of_measure} value={unit_of_measure}>
+                      {unit_of_measure}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="size">Quantity Available</Label>
+              <Input
+                id="quantity_available"
+                type="number"
+                step="0.01"
+                value={formData.quantity_available}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    quantity_available: Number.parseFloat(e.target.value),
+                  })
+                }
                 required
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="origin">Origin</Label>
-              <Input
-                id="origin"
-                value={formData.origin}
-                onChange={(e) => setFormData({ ...formData, origin: e.target.value })}
-                required
-              />
-            </div>
+          <div className="space-y-2">
+            <Label htmlFor="origin">Origin</Label>
+            <Select
+              value={formData.origin}
+              onValueChange={(value: CountryCode) => setFormData({ ...formData, origin: value })}
+              required
+            >
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.keys(CountryCode).map((country_code) => (
+                  <SelectItem key={country_code} value={country_code}>
+                    {country_code}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="weight">Weight</Label>
-              <Input
-                id="weight"
-                value={formData.weight}
-                onChange={(e) => setFormData({ ...formData, weight: e.target.value })}
-                placeholder="e.g., 250g, 1kg"
-                required
-              />
-            </div>
+          <div className="flex items-center space-x-2">
+            <Switch
+              id="is_active"
+              checked={formData.is_active}
+              onCheckedChange={(checked) => setFormData({ ...formData, is_active: checked })}
+              className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-200"
+            />
+            <Label htmlFor="inStock">Is Active</Label>
           </div>
 
           <div className="space-y-2">
@@ -238,46 +302,6 @@ export function ProductFormModal({ isOpen, onClose, onSubmit, product }: Product
               placeholder="/placeholder.svg?height=300&width=300"
               required
             />
-          </div>
-
-          <div className="space-y-2">
-            <Label>Tags</Label>
-            <div className="flex gap-2 mb-2">
-              <Input
-                value={newTag}
-                onChange={(e) => setNewTag(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Add a tag"
-                className="flex-1"
-              />
-              <Button type="button" onClick={addTag} variant="outline">
-                Add
-              </Button>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {formData.tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="flex items-center gap-1">
-                  {tag}
-                  <button
-                    type="button"
-                    onClick={() => removeTag(tag)}
-                    className="ml-1 hover:text-red-600"
-                  >
-                    <X className="h-3 w-3" />
-                  </button>
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <Switch
-              id="inStock"
-              checked={formData.inStock}
-              onCheckedChange={(checked) => setFormData({ ...formData, inStock: checked })}
-              className="data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-gray-200"
-            />
-            <Label htmlFor="inStock">In Stock</Label>
           </div>
 
           <div className="flex justify-end space-x-2 pt-4">
