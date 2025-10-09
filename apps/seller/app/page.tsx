@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "@repo/shared/ui";
+import { useUser } from "@stackframe/stack";
+import { SellerAppUrls } from "@repo/shared/utils/AppUrls";
 import { ArrowRight, CheckCircle2, Clock, ShoppingBag } from "lucide-react";
 import { useState } from "react";
 import {
@@ -11,6 +13,7 @@ import {
 } from "@repo/shared/utils/env";
 
 export default function Home() {
+  const user = useUser();
   const [email, setEmail] = useState<string>("");
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +51,7 @@ export default function Home() {
             <span className="text-[#075b23]">Afre</span>
             <span className="text-sm font-normal text-muted-foreground">for Sellers</span>
           </div>
-          <nav className="flex items-center gap-4">
+          <nav className="flex items-center gap-5">
             <Link
               href={BUYER_PLATFORM_URL}
               className="text-sm font-medium hover:underline underline-offset-4"
@@ -62,8 +65,35 @@ export default function Home() {
               size="sm"
               className="border-[#075b23] text-[#075b23] hover:bg-[#075b23] hover:text-white"
             >
-              <Link href="#subcribe">Get Updates</Link>
+              <Link href="#subscribe">Get Updates</Link>
             </Button>
+            {user ? (
+              <Button
+                onClick={() => user.signOut()}
+                variant="outline"
+                size="sm"
+                className="border-[#075b23] text-[#075b23] hover:bg-[#075b23] hover:text-white"
+              >
+                Sign Out
+              </Button>
+            ) : (
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-[#075b23] text-[#075b23] hover:bg-[#075b23] hover:text-white"
+              >
+                <Link href={SellerAppUrls.login}>Log In</Link>
+              </Button>
+            )}
+            {!user && (
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-[#075b23] text-[#075b23] hover:bg-[#075b23] hover:text-white"
+              >
+                <Link href={SellerAppUrls.signup}>Sign Up</Link>
+              </Button>
+            )}
           </nav>
         </div>
       </header>
@@ -82,14 +112,13 @@ export default function Home() {
                 Our seller platform is launching soon. Join our waitlist to be the first to know
                 when we can connect you with customers globally and sell your exceptional products.
               </p>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button size="lg" className="bg-[#075b23] hover:bg-[#075b23]/90">
-                  <Link href="#subcribe">Join Waitlist</Link>
+              <div className="flex flex-col gap-2 min-[400px]:flex-row text-white">
+                <Button className="bg-[#075b23] hover:bg-[#075b23]/90">
+                  <Link href="#subscribe">Join Waitlist</Link>
                 </Button>
                 <Link href={BUYER_PLATFORM_URL} target="_blank" rel="noopener noreferrer">
                   <Button
                     variant="outline"
-                    size="lg"
                     className="border-[#075b23] text-[#075b23] hover:bg-[#075b23] hover:text-white"
                   >
                     Visit Buyer Platform
@@ -104,7 +133,7 @@ export default function Home() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Why Choose on Afre?
+                Why Choose Afre?
               </h2>
               <p className="max-w-[700px] text-muted-foreground md:text-xl">
                 Join our platform to connect with African farmers and bring their exceptional
@@ -179,7 +208,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row lg:justify-end">
               <Link href={BUYER_PLATFORM_URL} target="_blank" rel="noopener noreferrer">
-                <Button size="lg" className="bg-[#075b23] hover:bg-[#075b23]/90">
+                <Button className="text-white bg-[#075b23] hover:bg-[#075b23]/90">
                   Shop Now
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -187,7 +216,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section id="subcribe" className="w-full py-12 md:py-24 lg:py-32 border-t">
+        <section id="subscribe" className="w-full py-12 md:py-24 lg:py-32 border-t">
           <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
             <div className="space-y-3">
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
@@ -208,7 +237,7 @@ export default function Home() {
                   value={email}
                   onChange={handleEmailChange}
                 />
-                <Button type="submit" className="bg-[#075b23] hover:bg-[#075b23]/90">
+                <Button type="submit" className="text-white bg-[#075b23] hover:bg-[#075b23]/90">
                   Subscribe
                 </Button>
               </form>

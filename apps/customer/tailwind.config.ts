@@ -1,5 +1,3 @@
-// tailwind config is required for editor support
-
 import type { Config } from "tailwindcss";
 import sharedConfig from "@repo/tailwind-config";
 import { getPackageDir } from "@repo/shared/utils/fs";
@@ -59,6 +57,7 @@ const config: Pick<Config, "darkMode" | "content" | "presets" | "theme" | "plugi
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        afre: "#075b23", // Added the exact Afre green as a custom color
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -89,6 +88,7 @@ const config: Pick<Config, "darkMode" | "content" | "presets" | "theme" | "plugi
       },
     },
   },
+  plugins: [require("tailwindcss-animate")],
 };
 
 export default config;

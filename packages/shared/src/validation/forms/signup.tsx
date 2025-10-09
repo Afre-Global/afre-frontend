@@ -1,0 +1,148 @@
+"use client";
+
+import { SubmitHandler, useForm } from "react-hook-form";
+import {
+  Button,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+  Input,
+  toast,
+} from "@repo/shared/ui";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useAuth } from "@repo/shared/hooks";
+import React from "react";
+import { useRouter } from "next/navigation";
+import { AppUrlsInterface } from "@repo/shared/utils/AppUrls";
+import { z } from "zod";
+
+export const SignUpFormValSchema = z
+  .object({
+    email: z.string().email("Please provide a valid email address"),
+    password: z.string().min(8),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
+export type SignUpFormValSchema = z.infer<typeof SignUpFormValSchema>;
+
+interface SignUpFormCombinedProps {
+  app_urls: AppUrlsInterface;
+}
+
+export function SignUpForm({ app_urls }: SignUpFormCombinedProps) {
+  const signUpForm = useForm<SignUpFormValSchema>({
+    resolver: zodResolver(SignUpFormValSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
+  const { signUpUser } = useAuth();
+  const [isLoading, setLoading] = React.useState(false);
+  const router = useRouter();
+
+  const onSubmitForm: SubmitHandler<SignUpFormValSchema> = async (data) => {
+    setLoading(true);
+    const result = await signUpUser({ email: data.email, password: data.password });
+    if (result.isErr()) {
+      toast.error(result.getError()?.message, { position: "top-center" });
+    } else {
+      toast.success("Sign up successful. Please check your email for verification", {
+        position: "top-center",
+      });
+      router.push(app_urls.login);
+    }
+    setLoading(false);
+  };
+
+  return (
+    <Form {...signUpForm}>
+      <form className="w-full space-y-8" onSubmit={signUpForm.handleSubmit(onSubmitForm)}>
+        <div className="flex flex-col items-center gap-2 text-center">
+          <h1 className="text-2xl font-bold">Signup</h1>
+          <p className="text-muted-foreground text-sm text-balance">
+            Enter your email and password below to signup.
+          </p>
+        </div>
+        <div className="space-y-4">
+          {/* Email */}
+          <FormField
+            control={signUpForm.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="Email" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Password */}
+          <div className="space-y-4">
+            <FormField
+              control={signUpForm.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input placeholder="password" {...field} className="w-full" type="password" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Confirm Password */}
+            <FormField
+              control={signUpForm.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Confirm Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="confirm password"
+                      {...field}
+                      className="w-full"
+                      type="password"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <Button
+            disabled={isLoading}
+            type="submit"
+            className="w-full py-3 px-5 bg-green-700 text-white rounded-lg hover:bg-[#075b23]"
+          >
+            {isLoading ? "Loading..." : "Sign Up"}
+          </Button>
+          <p className="text-sm w-full text-center">
+            Already have an account?{" "}
+            <Link href={app_urls.login} className="hover:underline text-sm">
+              Log in
+            </Link>
+          </p>
+        </div>
+      </form>
+    </Form>
+  );
+}

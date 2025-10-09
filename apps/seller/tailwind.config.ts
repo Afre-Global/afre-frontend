@@ -1,7 +1,10 @@
 import type { Config } from "tailwindcss";
 import sharedConfig from "@repo/tailwind-config";
+import { getPackageDir } from "@repo/shared/utils/fs";
 
-const config: Pick<Config, "darkMode" | "content" | "prefix" | "presets" | "theme" | "plugins"> = {
+const sharedPackageDir = getPackageDir().unwrap();
+
+const config: Pick<Config, "darkMode" | "content" | "presets" | "theme" | "plugins"> = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -9,8 +12,9 @@ const config: Pick<Config, "darkMode" | "content" | "prefix" | "presets" | "them
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
     "*.{js,ts,jsx,tsx,mdx}",
+    `${sharedPackageDir}/src/**/*.tsx`,
   ],
-  prefix: "",
+  presets: [sharedConfig],
   theme: {
     container: {
       center: true,
